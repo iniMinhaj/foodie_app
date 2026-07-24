@@ -1,0 +1,92 @@
+{
+  "status": "success",
+  "message": "Cart fetched successfully",
+  "data": {
+    "cart_id": "cart_5001",
+    "restaurant_id": "rest_001",
+    "items": [
+      {
+        "cart_item_id": "citem_001",
+        "product_id": "prod_1001",
+        "product_name": "Chicken Biryani",
+        "product_image": "https://cdn.example.com/products/chicken_biryani_1.jpg",
+        "quantity": 2,
+        "unit_base_price": 5.75,
+        "selected_variations": [
+          {
+            "group_id": "vg_1001_size",
+            "group_name": "Size",
+            "option_id": "opt_size_large",
+            "option_label": "Large",
+            "price_delta": 2.0
+          },
+          {
+            "group_id": "vg_1001_spice",
+            "group_name": "Spice Level",
+            "option_id": "opt_spice_hot",
+            "option_label": "Hot",
+            "price_delta": 0.0
+          }
+        ],
+        "selected_extras": [
+          {
+            "group_id": "eg_1001_addons",
+            "group_name": "Add-ons",
+            "option_id": "opt_extra_egg",
+            "option_label": "Boiled Egg",
+            "price_delta": 0.5
+          },
+          {
+            "group_id": "eg_1001_addons",
+            "group_name": "Add-ons",
+            "option_id": "opt_extra_borhani",
+            "option_label": "Borhani Drink",
+            "price_delta": 1.0
+          }
+        ],
+        "special_instructions": "Less oil please",
+        "unit_final_price": 9.25,
+        "line_total": 18.5
+      },
+      {
+        "cart_item_id": "citem_002",
+        "product_id": "prod_1001",
+        "product_name": "Chicken Biryani",
+        "product_image": "https://cdn.example.com/products/chicken_biryani_1.jpg",
+        "quantity": 1,
+        "unit_base_price": 5.75,
+        "selected_variations": [
+          {
+            "group_id": "vg_1001_size",
+            "group_name": "Size",
+            "option_id": "opt_size_reg",
+            "option_label": "Regular",
+            "price_delta": 0.0
+          },
+          {
+            "group_id": "vg_1001_spice",
+            "group_name": "Spice Level",
+            "option_id": "opt_spice_mild",
+            "option_label": "Mild",
+            "price_delta": 0.0
+          }
+        ],
+        "selected_extras": [],
+        "special_instructions": null,
+        "unit_final_price": 5.75,
+        "line_total": 5.75
+      }
+    ],
+    "pricing_summary": {
+      "subtotal": 24.25,
+      "delivery_fee": 1.99,
+      "platform_fee": 0.5,
+      "discount_amount": 2.0,
+      "applied_promo_code": "WELCOME10",
+      "tax": 1.21,
+      "grand_total": 25.95,
+      "currency": "USD"
+    },
+    "updated_at": "2026-07-24T10:32:15Z"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "status": "success",
+  "message": "Restaurants fetched successfully",
+  "meta": {
+    "current_page": 1,
+    "per_page": 10,
+    "total_items": 24,
+    "total_pages": 3,
+    "has_next_page": true
+  },
+  "data": [
+    {
+      "id": "rest_001",
+      "name": "Spice Garden",
+      "slug": "spice-garden",
+      "logo_url": "https://cdn.example.com/restaurants/spice_garden/logo.jpg",
+      "cover_url": "https://cdn.example.com/restaurants/spice_garden/cover.jpg",
+      "category_ids": ["cat_003", "cat_004"],
+      "rating": 4.6,
+      "total_reviews": 1284,
+      "price_range": "$$",
+      "delivery_time_minutes": {
+        "min": 25,
+        "max": 40
+      },
+      "delivery_fee": 1.99,
+      "minimum_order": 8.0,
+      "is_open": true,
+      "is_promoted": true,
+      "distance_km": 2.3,
+      "address": {
+        "line1": "45 Gulshan Avenue",
+        "city": "Dhaka",
+        "lat": 23.7925,
+        "lng": 90.4078
+      },
+      "tags": ["Biryani", "Spicy", "Family Combo"]
+    },
+    {
+      "id": "rest_002",
+      "name": "Burger Bros",
+      "slug": "burger-bros",
+      "logo_url": "https://cdn.example.com/restaurants/burger_bros/logo.jpg",
+      "cover_url": "https://cdn.example.com/restaurants/burger_bros/cover.jpg",
+      "category_ids": ["cat_002", "cat_008"],
+      "rating": 4.3,
+      "total_reviews": 856,
+      "price_range": "$",
+      "delivery_time_minutes": {
+        "min": 15,
+        "max": 30
+      },
+      "delivery_fee": 0.99,
+      "minimum_order": 5.0,
+      "is_open": true,
+      "is_promoted": false,
+      "distance_km": 1.1,
+      "address": {
+        "line1": "12 Banani Road 11",
+        "city": "Dhaka",
+        "lat": 23.7937,
+        "lng": 90.4066
+      },
+      "tags": ["Burger", "Fries", "Fast Delivery"]
+    },
+    {
+      "id": "rest_003",
+      "name": "Pizza Roma",
+      "slug": "pizza-roma",
+      "logo_url": "https://cdn.example.com/restaurants/pizza_roma/logo.jpg",
+      "cover_url": "https://cdn.example.com/restaurants/pizza_roma/cover.jpg",
+      "category_ids": ["cat_001"],
+      "rating": 4.8,
+      "total_reviews": 2140,
+      "price_range": "$$$",
+      "delivery_time_minutes": {
+        "min": 30,
+        "max": 50
+      },
+      "delivery_fee": 2.49,
+      "minimum_order": 10.0,
+      "is_open": true,
+      "is_promoted": true,
+      "distance_km": 3.8,
+      "address": {
+        "line1": "7 Dhanmondi Road 27",
+        "city": "Dhaka",
+        "lat": 23.7461,
+        "lng": 90.3742
+      },
+      "tags": ["Italian", "Wood Fired", "Cheese Burst"]
+    },
+    {
+      "id": "rest_004",
+      "name": "Green Bowl",
+      "slug": "green-bowl",
+      "logo_url": "https://cdn.example.com/restaurants/green_bowl/logo.jpg",
+      "cover_url": "https://cdn.example.com/restaurants/green_bowl/cover.jpg",
+      "category_ids": ["cat_007"],
+      "rating": 4.5,
+      "total_reviews": 412,
+      "price_range": "$$",
+      "delivery_time_minutes": {
+        "min": 20,
+        "max": 35
+      },
+      "delivery_fee": 1.49,
+      "minimum_order": 6.0,
+      "is_open": false,
+      "is_promoted": false,
+      "distance_km": 4.2,
+      "address": {
+        "line1": "3 Uttara Sector 7",
+        "city": "Dhaka",
+        "lat": 23.8759,
+        "lng": 90.3795
+      },
+      "tags": ["Salad", "Vegan", "Low Calorie"]
+    },
+    {
+      "id": "rest_005",
+      "name": "Dragon Wok",
+      "slug": "dragon-wok",
+      "logo_url": "https://cdn.example.com/restaurants/dragon_wok/logo.jpg",
+      "cover_url": "https://cdn.example.com/restaurants/dragon_wok/cover.jpg",
+      "category_ids": ["cat_004"],
+      "rating": 4.2,
+      "total_reviews": 678,
+      "price_range": "$$",
+      "delivery_time_minutes": {
+        "min": 25,
+        "max": 45
+      },
+      "delivery_fee": 1.99,
+      "minimum_order": 7.5,
+      "is_open": true,
+      "is_promoted": false,
+      "distance_km": 5.6,
+      "address": {
+        "line1": "19 Mirpur DOHS",
+        "city": "Dhaka",
+        "lat": 23.8258,
+        "lng": 90.3654
+      },
+      "tags": ["Noodles", "Fried Rice", "Dim Sum"]
+    }
+  ]
+}

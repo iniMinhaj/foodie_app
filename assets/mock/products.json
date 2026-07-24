@@ -1,0 +1,338 @@
+{
+  "status": "success",
+  "message": "Products fetched successfully",
+  "meta": {
+    "current_page": 1,
+    "per_page": 10,
+    "total_items": 48,
+    "total_pages": 5,
+    "has_next_page": true
+  },
+  "data": [
+    {
+      "id": "prod_1001",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "name": "Chicken Biryani",
+      "slug": "chicken-biryani",
+      "description": "Fragrant basmati rice slow-cooked with tender chicken, caramelized onions and a house blend of aromatic spices.",
+      "image_urls": [
+        "https://cdn.example.com/products/chicken_biryani_1.jpg",
+        "https://cdn.example.com/products/chicken_biryani_2.jpg"
+      ],
+      "base_price": 6.5,
+      "discount_price": 5.75,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 342,
+      "preparation_time_minutes": 20,
+      "nutrition": {
+        "calories": 620,
+        "protein_g": 28,
+        "carbs_g": 74,
+        "fat_g": 18
+      },
+      "tags": ["Bestseller", "Spicy"],
+      "variation_groups": [
+        {
+          "id": "vg_1001_size",
+          "name": "Size",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_size_reg", "label": "Regular", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_size_large", "label": "Large", "price_delta": 2.0, "is_default": false },
+            { "id": "opt_size_family", "label": "Family Pack (2-3 people)", "price_delta": 6.5, "is_default": false }
+          ]
+        },
+        {
+          "id": "vg_1001_spice",
+          "name": "Spice Level",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_spice_mild", "label": "Mild", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_spice_medium", "label": "Medium", "price_delta": 0.0, "is_default": false },
+            { "id": "opt_spice_hot", "label": "Hot", "price_delta": 0.0, "is_default": false },
+            { "id": "opt_spice_extra_hot", "label": "Extra Hot", "price_delta": 0.0, "is_default": false }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1001_addons",
+          "name": "Add-ons",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 4,
+          "options": [
+            { "id": "opt_extra_egg", "label": "Boiled Egg", "price_delta": 0.5 },
+            { "id": "opt_extra_raita", "label": "Raita (Yogurt Dip)", "price_delta": 0.75 },
+            { "id": "opt_extra_salad", "label": "Fresh Salad", "price_delta": 0.5 },
+            { "id": "opt_extra_borhani", "label": "Borhani Drink", "price_delta": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod_1002",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "name": "Classic Beef Burger",
+      "slug": "classic-beef-burger",
+      "description": "Juicy grilled beef patty with cheddar cheese, lettuce, tomato and our signature sauce in a toasted brioche bun.",
+      "image_urls": [
+        "https://cdn.example.com/products/beef_burger_1.jpg",
+        "https://cdn.example.com/products/beef_burger_2.jpg"
+      ],
+      "base_price": 4.99,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.4,
+      "total_reviews": 210,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 540,
+        "protein_g": 26,
+        "carbs_g": 42,
+        "fat_g": 27
+      },
+      "tags": ["Bestseller"],
+      "variation_groups": [
+        {
+          "id": "vg_1002_patty",
+          "name": "Patty Count",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_patty_single", "label": "Single Patty", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_patty_double", "label": "Double Patty", "price_delta": 2.5, "is_default": false }
+          ]
+        },
+        {
+          "id": "vg_1002_bun",
+          "name": "Bun Type",
+          "selection_type": "single",
+          "is_required": false,
+          "options": [
+            { "id": "opt_bun_brioche", "label": "Brioche Bun", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_bun_sesame", "label": "Sesame Bun", "price_delta": 0.0, "is_default": false },
+            { "id": "opt_bun_wheat", "label": "Whole Wheat Bun", "price_delta": 0.3, "is_default": false }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1002_toppings",
+          "name": "Extra Toppings",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 5,
+          "options": [
+            { "id": "opt_extra_cheese", "label": "Extra Cheese Slice", "price_delta": 0.6 },
+            { "id": "opt_extra_bacon", "label": "Beef Bacon", "price_delta": 1.2 },
+            { "id": "opt_extra_jalapeno", "label": "Jalapenos", "price_delta": 0.4 },
+            { "id": "opt_extra_egg_fried", "label": "Fried Egg", "price_delta": 0.7 }
+          ]
+        },
+        {
+          "id": "eg_1002_sides",
+          "name": "Side",
+          "selection_type": "single",
+          "is_required": false,
+          "options": [
+            { "id": "opt_side_fries", "label": "Regular Fries", "price_delta": 1.5 },
+            { "id": "opt_side_onion_rings", "label": "Onion Rings", "price_delta": 1.8 },
+            { "id": "opt_side_none", "label": "No Side", "price_delta": 0.0, "is_default": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod_1003",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "name": "Margherita Pizza",
+      "slug": "margherita-pizza",
+      "description": "Wood-fired classic with San Marzano tomato sauce, fresh mozzarella and basil leaves.",
+      "image_urls": [
+        "https://cdn.example.com/products/margherita_1.jpg"
+      ],
+      "base_price": 9.0,
+      "discount_price": 7.99,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.9,
+      "total_reviews": 588,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 780,
+        "protein_g": 32,
+        "carbs_g": 88,
+        "fat_g": 30
+      },
+      "tags": ["Vegetarian", "Bestseller"],
+      "variation_groups": [
+        {
+          "id": "vg_1003_size",
+          "name": "Size",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_size_small", "label": "8-inch (Small)", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_size_medium", "label": "12-inch (Medium)", "price_delta": 4.0, "is_default": false },
+            { "id": "opt_size_large2", "label": "16-inch (Large)", "price_delta": 8.0, "is_default": false }
+          ]
+        },
+        {
+          "id": "vg_1003_crust",
+          "name": "Crust",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_crust_thin", "label": "Thin Crust", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_crust_pan", "label": "Pan Crust", "price_delta": 1.0, "is_default": false },
+            { "id": "opt_crust_stuffed", "label": "Cheese Stuffed Crust", "price_delta": 2.5, "is_default": false }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1003_toppings",
+          "name": "Extra Toppings",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 6,
+          "options": [
+            { "id": "opt_extra_mushroom", "label": "Mushroom", "price_delta": 0.8 },
+            { "id": "opt_extra_olives", "label": "Black Olives", "price_delta": 0.7 },
+            { "id": "opt_extra_extra_cheese", "label": "Extra Mozzarella", "price_delta": 1.2 },
+            { "id": "opt_extra_basil", "label": "Extra Basil", "price_delta": 0.3 }
+          ]
+        },
+        {
+          "id": "eg_1003_dip",
+          "name": "Dip Sauce",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 2,
+          "options": [
+            { "id": "opt_dip_garlic", "label": "Garlic Dip", "price_delta": 0.5 },
+            { "id": "opt_dip_chili", "label": "Chili Dip", "price_delta": 0.5 },
+            { "id": "opt_dip_bbq", "label": "BBQ Dip", "price_delta": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod_1004",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "name": "Grilled Chicken Salad Bowl",
+      "slug": "grilled-chicken-salad-bowl",
+      "description": "Grilled chicken breast over mixed greens, cherry tomatoes, cucumber and a light lemon vinaigrette.",
+      "image_urls": [
+        "https://cdn.example.com/products/salad_bowl_1.jpg"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": false,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 96,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 320,
+        "protein_g": 34,
+        "carbs_g": 18,
+        "fat_g": 11
+      },
+      "tags": ["Healthy", "Low Carb"],
+      "variation_groups": [
+        {
+          "id": "vg_1004_dressing",
+          "name": "Dressing",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_dress_lemon", "label": "Lemon Vinaigrette", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_dress_caesar", "label": "Caesar", "price_delta": 0.3, "is_default": false },
+            { "id": "opt_dress_none", "label": "No Dressing", "price_delta": 0.0, "is_default": false }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1004_addons",
+          "name": "Add-ons",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 3,
+          "options": [
+            { "id": "opt_extra_avocado", "label": "Avocado", "price_delta": 1.0 },
+            { "id": "opt_extra_feta", "label": "Feta Cheese", "price_delta": 0.8 },
+            { "id": "opt_extra_almonds", "label": "Roasted Almonds", "price_delta": 0.6 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prod_1005",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "name": "Chicken Fried Rice",
+      "slug": "chicken-fried-rice",
+      "description": "Wok-tossed rice with chicken, egg, spring onion and soy sauce.",
+      "image_urls": [
+        "https://cdn.example.com/products/fried_rice_1.jpg"
+      ],
+      "base_price": 4.25,
+      "discount_price": 3.75,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 154,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 480,
+        "protein_g": 20,
+        "carbs_g": 62,
+        "fat_g": 14
+      },
+      "tags": ["Comfort Food"],
+      "variation_groups": [
+        {
+          "id": "vg_1005_size",
+          "name": "Portion",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            { "id": "opt_portion_reg", "label": "Regular", "price_delta": 0.0, "is_default": true },
+            { "id": "opt_portion_large", "label": "Large", "price_delta": 1.75, "is_default": false }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1005_addons",
+          "name": "Add-ons",
+          "selection_type": "multiple",
+          "is_required": false,
+          "max_selectable": 3,
+          "options": [
+            { "id": "opt_extra_chili_oil", "label": "Chili Oil", "price_delta": 0.25 },
+            { "id": "opt_extra_egg_side", "label": "Extra Fried Egg", "price_delta": 0.6 },
+            { "id": "opt_extra_spring_roll", "label": "Spring Roll (2pcs)", "price_delta": 1.5 }
+          ]
+        }
+      ]
+    }
+  ]
+}

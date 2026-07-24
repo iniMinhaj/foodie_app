@@ -1,0 +1,78 @@
+{
+  "status": "success",
+  "message": "Categories fetched successfully",
+  "data": [
+    {
+      "id": "cat_001",
+      "name": "Pizza",
+      "slug": "pizza",
+      "icon_url": "https://cdn.example.com/icons/pizza.png",
+      "banner_url": "https://cdn.example.com/banners/pizza_banner.jpg",
+      "is_active": true,
+      "sort_order": 1
+    },
+    {
+      "id": "cat_002",
+      "name": "Burger",
+      "slug": "burger",
+      "icon_url": "https://cdn.example.com/icons/burger.png",
+      "banner_url": "https://cdn.example.com/banners/burger_banner.jpg",
+      "is_active": true,
+      "sort_order": 2
+    },
+    {
+      "id": "cat_003",
+      "name": "Biryani",
+      "slug": "biryani",
+      "icon_url": "https://cdn.example.com/icons/biryani.png",
+      "banner_url": "https://cdn.example.com/banners/biryani_banner.jpg",
+      "is_active": true,
+      "sort_order": 3
+    },
+    {
+      "id": "cat_004",
+      "name": "Chinese",
+      "slug": "chinese",
+      "icon_url": "https://cdn.example.com/icons/chinese.png",
+      "banner_url": "https://cdn.example.com/banners/chinese_banner.jpg",
+      "is_active": true,
+      "sort_order": 4
+    },
+    {
+      "id": "cat_005",
+      "name": "Desserts",
+      "slug": "desserts",
+      "icon_url": "https://cdn.example.com/icons/dessert.png",
+      "banner_url": "https://cdn.example.com/banners/dessert_banner.jpg",
+      "is_active": true,
+      "sort_order": 5
+    },
+    {
+      "id": "cat_006",
+      "name": "Beverages",
+      "slug": "beverages",
+      "icon_url": "https://cdn.example.com/icons/beverage.png",
+      "banner_url": "https://cdn.example.com/banners/beverage_banner.jpg",
+      "is_active": true,
+      "sort_order": 6
+    },
+    {
+      "id": "cat_007",
+      "name": "Healthy",
+      "slug": "healthy",
+      "icon_url": "https://cdn.example.com/icons/healthy.png",
+      "banner_url": "https://cdn.example.com/banners/healthy_banner.jpg",
+      "is_active": true,
+      "sort_order": 7
+    },
+    {
+      "id": "cat_008",
+      "name": "Fast Food",
+      "slug": "fast-food",
+      "icon_url": "https://cdn.example.com/icons/fastfood.png",
+      "banner_url": "https://cdn.example.com/banners/fastfood_banner.jpg",
+      "is_active": true,
+      "sort_order": 8
+    }
+  ]
+}

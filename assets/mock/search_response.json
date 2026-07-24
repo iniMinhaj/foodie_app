@@ -1,0 +1,58 @@
+{
+  "status": "success",
+  "message": "Search results fetched successfully",
+  "query": "chicken",
+  "meta": {
+    "current_page": 1,
+    "per_page": 10,
+    "total_items": 3,
+    "total_pages": 1,
+    "has_next_page": false,
+    "search_duration_ms": 42
+  },
+  "data": {
+    "restaurants": [
+      {
+        "id": "rest_001",
+        "name": "Spice Garden",
+        "logo_url": "https://cdn.example.com/restaurants/spice_garden/logo.jpg",
+        "rating": 4.6,
+        "relevance_score": 0.92
+      }
+    ],
+    "products": [
+      {
+        "id": "prod_1001",
+        "name": "Chicken Biryani",
+        "restaurant_id": "rest_001",
+        "restaurant_name": "Spice Garden",
+        "image_url": "https://cdn.example.com/products/chicken_biryani_1.jpg",
+        "base_price": 6.5,
+        "discount_price": 5.75,
+        "relevance_score": 0.98
+      },
+      {
+        "id": "prod_1005",
+        "name": "Chicken Fried Rice",
+        "restaurant_id": "rest_005",
+        "restaurant_name": "Dragon Wok",
+        "image_url": "https://cdn.example.com/products/fried_rice_1.jpg",
+        "base_price": 4.25,
+        "discount_price": 3.75,
+        "relevance_score": 0.87
+      },
+      {
+        "id": "prod_1004",
+        "name": "Grilled Chicken Salad Bowl",
+        "restaurant_id": "rest_004",
+        "restaurant_name": "Green Bowl",
+        "image_url": "https://cdn.example.com/products/salad_bowl_1.jpg",
+        "base_price": 5.5,
+        "discount_price": null,
+        "relevance_score": 0.81
+      }
+    ],
+    "recent_searches": ["biryani", "pizza", "burger deals"],
+    "trending_searches": ["chicken", "pizza offer", "healthy bowl"]
+  }
+}

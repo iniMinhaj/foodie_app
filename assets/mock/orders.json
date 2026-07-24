@@ -1,0 +1,142 @@
+{
+  "status": "success",
+  "message": "Orders fetched successfully",
+  "meta": {
+    "current_page": 1,
+    "per_page": 10,
+    "total_items": 14,
+    "total_pages": 2,
+    "has_next_page": true
+  },
+  "data": [
+    {
+      "id": "order_9001",
+      "order_number": "ORD-20260722-9001",
+      "restaurant": {
+        "id": "rest_001",
+        "name": "Spice Garden",
+        "logo_url": "https://cdn.example.com/restaurants/spice_garden/logo.jpg"
+      },
+      "items": [
+        {
+          "product_name": "Chicken Biryani",
+          "quantity": 2,
+          "unit_final_price": 9.25,
+          "line_total": 18.5,
+          "variation_summary": "Large, Hot",
+          "extras_summary": "Boiled Egg, Borhani Drink"
+        }
+      ],
+      "pricing_summary": {
+        "subtotal": 18.5,
+        "delivery_fee": 1.99,
+        "discount_amount": 0.0,
+        "tax": 0.92,
+        "grand_total": 21.41,
+        "currency": "USD"
+      },
+      "payment_method": "cash_on_delivery",
+      "current_status": "delivered",
+      "status_timeline": [
+        { "status": "placed", "timestamp": "2026-07-22T18:02:00Z" },
+        { "status": "confirmed", "timestamp": "2026-07-22T18:04:12Z" },
+        { "status": "preparing", "timestamp": "2026-07-22T18:06:40Z" },
+        { "status": "out_for_delivery", "timestamp": "2026-07-22T18:28:55Z" },
+        { "status": "delivered", "timestamp": "2026-07-22T18:52:30Z" }
+      ],
+      "delivery_address": {
+        "label": "Home",
+        "line1": "House 22, Road 5, Dhanmondi",
+        "city": "Dhaka",
+        "lat": 23.7449,
+        "lng": 90.3760
+      },
+      "placed_at": "2026-07-22T18:02:00Z"
+    },
+    {
+      "id": "order_9002",
+      "order_number": "ORD-20260723-9002",
+      "restaurant": {
+        "id": "rest_003",
+        "name": "Pizza Roma",
+        "logo_url": "https://cdn.example.com/restaurants/pizza_roma/logo.jpg"
+      },
+      "items": [
+        {
+          "product_name": "Margherita Pizza",
+          "quantity": 1,
+          "unit_final_price": 11.49,
+          "line_total": 11.49,
+          "variation_summary": "12-inch, Pan Crust",
+          "extras_summary": "Extra Mozzarella"
+        }
+      ],
+      "pricing_summary": {
+        "subtotal": 11.49,
+        "delivery_fee": 2.49,
+        "discount_amount": 1.0,
+        "tax": 0.65,
+        "grand_total": 13.63,
+        "currency": "USD"
+      },
+      "payment_method": "card",
+      "current_status": "out_for_delivery",
+      "status_timeline": [
+        { "status": "placed", "timestamp": "2026-07-23T20:10:00Z" },
+        { "status": "confirmed", "timestamp": "2026-07-23T20:12:44Z" },
+        { "status": "preparing", "timestamp": "2026-07-23T20:15:02Z" },
+        { "status": "out_for_delivery", "timestamp": "2026-07-23T20:38:19Z" }
+      ],
+      "delivery_address": {
+        "label": "Office",
+        "line1": "Level 6, Bashundhara City, Panthapath",
+        "city": "Dhaka",
+        "lat": 23.7508,
+        "lng": 90.3915
+      },
+      "placed_at": "2026-07-23T20:10:00Z"
+    },
+    {
+      "id": "order_9003",
+      "order_number": "ORD-20260724-9003",
+      "restaurant": {
+        "id": "rest_002",
+        "name": "Burger Bros",
+        "logo_url": "https://cdn.example.com/restaurants/burger_bros/logo.jpg"
+      },
+      "items": [
+        {
+          "product_name": "Classic Beef Burger",
+          "quantity": 1,
+          "unit_final_price": 6.09,
+          "line_total": 6.09,
+          "variation_summary": "Double Patty",
+          "extras_summary": "Extra Cheese Slice, Regular Fries"
+        }
+      ],
+      "pricing_summary": {
+        "subtotal": 6.09,
+        "delivery_fee": 0.99,
+        "discount_amount": 0.0,
+        "tax": 0.35,
+        "grand_total": 7.43,
+        "currency": "USD"
+      },
+      "payment_method": "mobile_wallet",
+      "current_status": "cancelled",
+      "status_timeline": [
+        { "status": "placed", "timestamp": "2026-07-24T09:00:00Z" },
+        { "status": "cancelled", "timestamp": "2026-07-24T09:03:21Z" }
+      ],
+      "cancellation_reason": "Customer requested cancellation",
+      "delivery_address": {
+        "label": "Home",
+        "line1": "House 22, Road 5, Dhanmondi",
+        "city": "Dhaka",
+        "lat": 23.7449,
+        "lng": 90.3760
+      },
+      "placed_at": "2026-07-24T09:00:00Z"
+    }
+  ]
+}

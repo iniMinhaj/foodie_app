@@ -3,22 +3,12 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-/// Thrown by [JsonStorageService] on any read/write failure — callers
-/// translate this into a typed [Failure] at the datasource boundary,
-/// never let it leak as a generic [Exception].
-class JsonStorageException implements Exception {
-  final String message;
-  const JsonStorageException(this.message);
+import 'local_api_client.dart';
 
-  @override
-  String toString() => 'JsonStorageException: $message';
-}
-
-/// Reads/writes the `data` array of a seeded mock JSON file
-/// (`{status, message, meta?, data: [...]}`) living in the app's
+/// [LocalApiClient] backed by a seeded mock JSON file living in the app's
 /// documents directory — never touches `assets/mock/` directly, that's
 /// [AssetSeeder]'s job.
-class JsonStorageService {
+class JsonLocalApiClient implements LocalApiClient {
   Future<Directory> _mockDir() async {
     final docs = await getApplicationDocumentsDirectory();
     final dir = Directory('${docs.path}/mock');
@@ -33,6 +23,7 @@ class JsonStorageService {
     return File('${dir.path}/$fileName');
   }
 
+  @override
   Future<List<Map<String, dynamic>>> readCollection(String fileName) async {
     try {
       final file = await _fileFor(fileName);
@@ -55,6 +46,7 @@ class JsonStorageService {
 
   /// Rewrites the whole file, preserving its existing envelope
   /// (`status`/`message`/`meta`) but replacing `data` with [data].
+  @override
   Future<void> writeCollection(String fileName, List<Map<String, dynamic>> data) async {
     try {
       final file = await _fileFor(fileName);

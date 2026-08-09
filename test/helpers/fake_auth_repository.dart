@@ -1,7 +1,7 @@
 import 'package:foodie_app/core/network/failures.dart';
 import 'package:foodie_app/core/network/result.dart';
 import 'package:foodie_app/core/entities/address.dart';
-import 'package:foodie_app/core/entities/user_profile.dart';
+import 'package:foodie_app/features/auth/domain/entities/user_profile.dart';
 import 'package:foodie_app/features/auth/domain/repositories/auth_repository.dart';
 
 const fakeUser = UserProfile(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_theme.dart';
-import '../../features/home/screens/home_placeholder_screen.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
 import '../utils/cart_service.dart';
 
 /// TODO: Riverpod - `_selectedAddressIndex`/`_selectedPaymentIndex`/
@@ -69,7 +69,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               onPressed: () {
                 Navigator.of(context).popUntil((route) => route.isFirst);
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => const HomePlaceholderScreen()),
+                  MaterialPageRoute(builder: (_) => const HomeScreen()),
                 );
               },
               child: const Text('Back to Home'),

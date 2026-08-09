@@ -1,7 +1,7 @@
-import '../../../../../core/entities/user_profile.dart';
-import '../../../../../core/network/failures.dart';
-import '../../../../../core/network/result.dart';
-import '../../repositories/auth_repository.dart';
+import '../entities/user_profile.dart';
+import '../../../../core/network/failures.dart';
+import '../../../../core/network/result.dart';
+import '../repositories/auth_repository.dart';
 
 final _emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 

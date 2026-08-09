@@ -1,15 +1,12 @@
-# Foodie — Multi-Vendor Food Ordering App (Clean Architecture + Riverpod)
+# Foodie — Architecture & Implementation Spec
 
-A portfolio-grade Flutter app that simulates a real multi-vendor food
-ordering product — browsing, search, cart, checkout, order tracking — built
-on **Clean Architecture** and **Riverpod (no codegen)**, with a mock JSON
-"backend" that behaves like a real one: registration *writes* to disk, login
-*reads* from that same write.
-
-This README doubles as the **implementation spec**. Every module below is
-written so it can be handed to an AI coding agent one at a time — "implement
-the Auth module" — and built without needing the rest of the app to already
-exist, as long as `0. Global Core` is done first.
+> This is the detailed engineering spec behind Foodie: every module's
+> files, contracts, business rules, and acceptance criteria. It's written
+> so it can be handed to an AI coding agent one module at a time, or read
+> end-to-end by a technical reviewer who wants to see the reasoning behind
+> every design decision.
+>
+> Looking for the quick overview instead? → [`../README.md`](../README.md)
 
 ---
 
@@ -17,40 +14,47 @@ exist, as long as `0. Global Core` is done first.
 
 0. [Global core (build this first)](#0-global-core-build-this-first)
 1. [Shared data contracts](#1-shared-data-contracts)
-2. [Module: Auth](#module-auth)
-3. [Module: Home](#module-home)
-4. [Module: Search](#module-search)
-5. [Module: Restaurant Detail](#module-restaurant-detail)
-6. [Module: Product Detail](#module-product-detail)
-7. [Module: Cart](#module-cart)
-8. [Module: Checkout](#module-checkout)
-9. [Module: Orders](#module-orders)
-10. [Module: Profile](#module-profile)
-11. [Navigation wiring (go_router)](#11-navigation-wiring-go_router)
-12. [Testing conventions](#12-testing-conventions)
-13. [Engineering decision notes](#13-engineering-decision-notes)
-14. [Suggested build order](#14-suggested-build-order)
-15. [Out of scope, on purpose](#15-out-of-scope-on-purpose)
+2. [Mock data files](#2-mock-data-files)
+3. [Module: Auth](#module-auth)
+4. [Module: Home](#module-home)
+5. [Module: Search](#module-search)
+6. [Module: Restaurant Detail](#module-restaurant-detail)
+7. [Module: Product Detail](#module-product-detail)
+8. [Module: Cart](#module-cart)
+9. [Module: Checkout](#module-checkout)
+10. [Module: Orders](#module-orders)
+11. [Module: Profile](#module-profile)
+12. [Navigation wiring (go_router)](#12-navigation-wiring-go_router)
+13. [Testing conventions](#13-testing-conventions)
+14. [Engineering decision notes](#13-engineering-decision-notes)
+15. [Suggested build order](#15-suggested-build-order)
+16. [Dependencies](#16-dependencies)
+17. [Out of scope, on purpose](#17-out-of-scope-on-purpose)
 
 ---
 
 ## 0. Global core (build this first)
 
-Nothing else can be built until this exists — every module below depends on
-it. This is infra, not a "feature."
+Nothing else can be built until this exists — every module below depends
+on it. This is infra, not a "feature."
 
 **Files to create:**
 
 ```
 core/config/app_config.dart          # pageSize=10, debounceMs=400, cacheTtl=Duration(minutes:5)
 core/network/result.dart             # sealed Result<F extends Failure, T> { Ok(T), Err(F) } + .fold()/.map()
-core/network/failures.dart           # Failure (base), NetworkFailure, ValidationFailure(String field,String msg), NotFoundFailure, ConflictFailure, UnknownFailure
+core/network/failures.dart           # Failure (base), NetworkFailure, ValidationFailure(String field,String msg),
+                                      # NotFoundFailure, ConflictFailure, CartConflictFailure, UnknownFailure
 core/network/simulated_latency.dart  # Future<void> simulateDelay({int minMs=300,int maxMs=900})
-core/storage/asset_seeder.dart       # copies assets/mock/*.json -> getApplicationDocumentsDirectory()/mock/*.json, only if not already present
-core/storage/json_storage_service.dart
+core/storage/asset_seeder.dart       # copies assets/mock/*.json -> getApplicationDocumentsDirectory()/mock/*.json
+                                      # Future<void> seed({bool force = false})
+                                      #   force=false (default): no-op if already seeded (marker file present)
+                                      #   force=true: overwrite documents copy with fresh bundled seed data
+core/storage/local_api_client.dart      # abstract LocalApiClient contract, named like a real API client on purpose
    # Future<List<Map<String,dynamic>>> readCollection(String fileName)
    # Future<void> writeCollection(String fileName, List<Map<String,dynamic>> data)
    # must throw a typed exception (not generic Exception) on read/write failure
+core/storage/json_local_api_client.dart # JsonLocalApiClient implements LocalApiClient, backed by local JSON files
 core/cache/cache_box.dart
    # class CacheEntry<T> { T value; DateTime storedAt; bool isExpired(Duration ttl) }
    # class CacheBox<T> { T? read(String key, Duration ttl); void write(String key, T value); void invalidate(String key); }
@@ -60,7 +64,7 @@ core/utils/pagination_state.dart
    #   PaginatedState<T> copyWith(...); factory PaginatedState.initial(); }
 core/providers/core_providers.dart
    # sharedPreferencesProvider (Provider<SharedPreferences>, overridden in bootstrap.dart with the real instance)
-   # jsonStorageServiceProvider
+   # localApiClientProvider (Provider<LocalApiClient>, returns JsonLocalApiClient())
    # assetSeederProvider
 core/theme/app_theme.dart            # colors, text styles, spacing/radius tokens (carry over from setState version)
 core/widgets/                        # AppImage, ShimmerBox, EmptyState, ErrorState(failure, onRetry), AppButton, AppTextField
@@ -68,10 +72,18 @@ bootstrap.dart                        # runs AssetSeeder.seed(), reads SharedPre
 main.dart                             # calls bootstrap()
 ```
 
+> **On modeling conventions:** entities and state classes (`UserProfile`,
+> `Order`, `PaginatedState<T>`, etc.) are plain Dart classes with
+> hand-written `copyWith`/`==`/`hashCode` — `freezed` is deliberately
+> avoided for the same reason Riverpod codegen is: no `build_runner` step
+> required to read or modify the code. See
+> [Section 13](#13-engineering-decision-notes).
+
 **Acceptance checklist for this module:**
 - [ ] `Result<F,T>` has `.fold(onErr, onOk)`, `.isOk`, `.map()` — no layer above `data/` ever uses `try/catch` for expected failures.
-- [ ] `JsonStorageService` never touches `assets/mock/` directly — only the documents-directory copy.
-- [ ] `AssetSeeder` is idempotent — running it twice does not overwrite existing user-modified data.
+- [ ] `JsonLocalApiClient` never touches `assets/mock/` directly — only the documents-directory copy.
+- [ ] `AssetSeeder.seed()` (default, `force: false`) is idempotent — running it twice does not overwrite existing user-modified data.
+- [ ] `AssetSeeder.seed(force: true)` overwrites the documents-directory copy with the bundled seed, used only by Profile's "Reset demo data."
 - [ ] `CacheBox.read()` returns `null` on miss *or* expiry (caller decides whether to refetch) — it never throws.
 - [ ] `Debouncer.run()` cancels any pending timer before scheduling a new one.
 - [ ] `PaginatedState.initial()` has `isFirstLoad = true`, empty `items`, `hasMore = true`.
@@ -110,11 +122,38 @@ Order          { id, userId, restaurantId, restaurantName, items: List<OrderItem
                  placedAt, addressLabel, paymentMethodLabel }
 
 UserProfile    { id, name, email, phone, avatarUrl, addresses: List<Address> }
+                # NOTE: passwordHash + salt live only on the persisted UserModel (data layer),
+                # never on the UserProfile entity exposed to presentation/domain.
+
+SessionInfo    { token, userId, loggedInAt }
 ```
 
 **Pricing rule (used by both Product and Cart modules):**
 `unitPrice = basePrice + sum(selected choices' priceDelta)`,
 `lineTotal = unitPrice * quantity`.
+
+---
+
+## 2. Mock data files
+
+`assets/mock/*.json` are the **read-only seed source**, bundled at build
+time. On first launch, `AssetSeeder` copies each of these into
+`{documents}/mock/`, which is the only copy the app ever reads from or
+writes to afterward (see [Engineering Decision Notes](#13-engineering-decision-notes)).
+
+Every file shares the same envelope shape:
+
+```json
+{ "status": "success", "message": "restaurants", "meta": {}, "data": [ /* ... */ ] }
+```
+
+| File | `data` shape | Written by |
+|---|---|---|
+| `categories.json` | `Category[]` | seed only, never written at runtime |
+| `restaurants.json` | `Restaurant[]` | seed only, never written at runtime |
+| `products.json` | `Product[]` | seed only, never written at runtime |
+| `users.json` | `UserModel[]` (includes `passwordHash`, `salt`) | Auth (register), Profile (edit profile / add address) |
+| `orders.json` | `Order[]` | Checkout (place order) |
 
 ---
 
@@ -151,11 +190,11 @@ abstract class AuthRepository {
 ```
 
 **Business rules:**
-- `RegisterUseCase`: trims/validates email format and non-empty name client-side (ValidationFailure per field) *before* touching the repository; repository additionally checks for a duplicate email in `users.json` and returns `ConflictFailure` if found.
-- Password stored via a simple deterministic hash (e.g. salted SHA-256) — never store plaintext, but comment clearly that this is demo-grade, not production security.
-- New user gets a generated `id` (uuid), empty `addresses`, and is appended to the existing list in `users.json`, then the whole file is rewritten via `JsonStorageService.writeCollection`.
+- `RegisterUseCase`: trims/validates email format and non-empty name client-side (`ValidationFailure` per field) *before* touching the repository; repository additionally checks for a duplicate email in `users.json` and returns `ConflictFailure` if found.
+- Password hashing is demo-grade, clearly commented as such: a per-user random `salt` is generated at registration, stored alongside `passwordHash = sha256(salt + password)` on the persisted `UserModel` (never on `UserProfile`, which is what the rest of the app sees). Login re-derives the hash using the stored salt and compares.
+- New user gets a generated `id` (uuid), empty `addresses`, and is appended to the existing list in `users.json`, then the whole file is rewritten via `LocalApiClient.writeCollection`.
 - `LoginUseCase`: looks up by email, compares hash, returns `NotFoundFailure` if email doesn't exist and a distinct `ValidationFailure` if password is wrong (don't leak which one to the UI copy — show one generic "invalid credentials" message, but keep the failures typed differently internally so it's testable).
-- On successful login, generate a session token (uuid) and persist `{token, userId}` via `SharedPreferences` (through `sessionProvider`'s repository call, not directly from the UI).
+- On successful login, generate a session token (uuid) and persist `{token, userId}` via `SharedPreferences` (through the repository, not directly from the UI).
 - `RestoreSessionUseCase` runs once at app start (inside `AuthNotifier.build()`): reads the persisted token, and if present, resolves it back into a `UserProfile` by re-reading `users.json`.
 
 **Provider/state:**
@@ -221,7 +260,7 @@ class PaginatedResult<T> { List<T> items; bool hasMore; }
 - `GetRestaurantsPageUseCase` slices `restaurants.json` by `AppConfig.pageSize`, optionally filtered by `categoryId` first, then sliced — `hasMore = (page * pageSize) < filteredList.length`.
 - `restaurantListNotifierProvider` (a `NotifierProvider` wrapping `PaginatedState<Restaurant>`): `loadFirstPage()`, `loadNextPage()` (no-op if `isLoadingMore` or `!hasMore`), `refresh()` (resets to page 1, invalidates the `CacheBox` entry keyed by current `categoryId`), `selectCategory(int? id)` (resets pagination and refetches).
 - Category selection and list are two separate providers that the screen composes — don't merge them into one giant Notifier.
-- `is_open: false` restaurants render with a dimmed overlay + "Closed" badge and are not tappable into detail (or tappable into a read-only detail — pick one and be consistent, recommend: still viewable, just can't add to cart, matching Product module's `is_available` behavior).
+- `is_open: false` restaurants render with a dimmed overlay + "Closed" badge and remain tappable into a read-only detail (can't add to cart), matching Product module's `is_available` behavior for consistency.
 
 **Acceptance checklist:**
 - [ ] Scrolling near the end of the list triggers `loadNextPage()` exactly once per threshold crossing (no duplicate calls on fast scroll).
@@ -311,7 +350,7 @@ final restaurantDetailProvider = FutureProvider.family
 ```
 
 **Business rules:**
-- Passed the `Restaurant` object as `extra` from Home's list (see [Navigation wiring](#11-navigation-wiring-go_router)) so the header can render instantly while the menu list is still loading — don't block the whole screen on one combined future.
+- Passed the `Restaurant` object as `extra` from Home's list (see [Navigation wiring](#12-navigation-wiring-go_router)) so the header can render instantly while the menu list is still loading — don't block the whole screen on one combined future.
 - Menu items with `is_available: false` render disabled (dimmed, "Unavailable" tag) and are not tappable into Product Detail.
 
 **Acceptance checklist:**
@@ -397,7 +436,7 @@ class CartState { List<CartItem> items; String? restaurantId; // single-restaura
   int get subtotal; }
 
 class CartNotifier extends Notifier<CartState> {
-  void add(Product product, ProductConfigState config); // from Product Detail's "Add to Cart"
+  Result<CartConflictFailure, void> add(Product product, ProductConfigState config); // from Product Detail's "Add to Cart"
   void updateQuantity(String cartItemId, int quantity); // quantity 0 => remove
   void remove(String cartItemId);
   void clear();
@@ -409,13 +448,13 @@ without `.autoDispose`, or `keepAlive()`'d at root via `bootstrap.dart`
 reading it once).
 
 **Business rules:**
-- **Single-restaurant cart:** adding a product from a different restaurant than what's already in the cart should prompt "Clear cart and start a new order?" rather than silently mixing restaurants — implement as a `Result`-style check the UI reacts to (`CartConflictException`-style typed result, not a thrown exception across the Notifier boundary).
+- **Single-restaurant cart:** adding a product from a different restaurant than what's already in the cart returns `Result.err(CartConflictFailure(...))` instead of silently mixing restaurants or throwing — the UI reacts to this typed failure by prompting "Clear cart and start a new order?" This stays consistent with the app-wide rule that expected failures flow through `Result`, never through thrown exceptions across a Notifier boundary.
 - Identical product + identical selected options + same restaurant → increment quantity on the existing `CartItem` instead of adding a duplicate line.
 - `lineTotal` recalculated whenever quantity changes.
 
 **Acceptance checklist:**
 - [ ] Adding the same product+options twice merges into one line with quantity 2, not two lines.
-- [ ] Adding a product from a different restaurant while the cart is non-empty triggers the conflict flow, doesn't silently merge.
+- [ ] Adding a product from a different restaurant while the cart is non-empty returns a `CartConflictFailure`, doesn't silently merge.
 - [ ] Quantity set to 0 removes the line item.
 - [ ] Unit tests: merge-on-identical-config, conflict detection, subtotal math.
 
@@ -448,7 +487,7 @@ class CheckoutNotifier extends Notifier<CheckoutState> {
 
 **Business rules:**
 - `PlaceOrderUseCase` requires both an address and a payment method selected — returns `ValidationFailure` otherwise, checked before the simulated network call, not after.
-- On success: build an `Order` from the current `CartState` (snapshotting item names/prices at time of order, not live references to `Product`), append to `orders.json` via `JsonStorageService`, then call `cartNotifierProvider.notifier.clear()`.
+- On success: build an `Order` from the current `CartState` (snapshotting item names/prices at time of order, not live references to `Product`), append to `orders.json` via `LocalApiClient`, then call `cartNotifierProvider.notifier.clear()`.
 - `_isPlacingOrder` (bool guard) prevents a double-tap on "Place Order" from creating two orders — disable the button the instant it's tapped.
 
 **Acceptance checklist:**
@@ -505,9 +544,9 @@ presentation/features/profile/screens/edit_profile_screen.dart
 - Editing profile writes back to `users.json` through the same
   `AuthLocalDataSource`/`AuthRepository` used by registration — don't create
   a second, parallel writer for the same file.
-- "Reset demo data" button re-runs `AssetSeeder` in force mode (overwrite),
-  then logs the current session out, since the user record it referenced
-  may no longer exist post-reset.
+- "Reset demo data" button calls `AssetSeeder.seed(force: true)`, then logs
+  the current session out, since the user record it referenced may no
+  longer exist post-reset.
 
 **Acceptance checklist:**
 - [ ] Editing name/phone persists across app restart.
@@ -516,7 +555,7 @@ presentation/features/profile/screens/edit_profile_screen.dart
 
 ---
 
-## 11. Navigation wiring (go_router)
+## 12. Navigation wiring (go_router)
 
 ```
 /login                         (public)
@@ -537,6 +576,10 @@ presentation/features/profile/screens/edit_profile_screen.dart
   `GoRouterRefreshStream` fed by `ref.listen`), redirects unauthenticated
   users to `/login` from any protected route and redirects an authenticated
   user away from `/login`/`/register` to `/home`.
+- While `authNotifierProvider` is still resolving (`bootstrap.dart`'s
+  `AssetSeeder.seed()` + `RestoreSessionUseCase` on cold start), the root
+  route shows a lightweight splash/loading screen rather than flashing
+  `/login` before redirecting — checked via `authNotifierProvider.isLoading`.
 - Detail screens receive their seed object via `extra` (see Restaurant
   Detail and Product Detail modules above) — the `:id` in the path is for
   deep-linkability/`.family(id)` provider keys, the `extra` is for
@@ -544,12 +587,15 @@ presentation/features/profile/screens/edit_profile_screen.dart
 
 ---
 
-## 12. Testing conventions
+## 13. Testing conventions
 
 - **Domain usecases:** pure unit tests against a fake repository
   implementing the abstract contract — no Riverpod, no Flutter imports.
 - **Data repositories:** tested against a fake datasource, asserting
-  correct mapping and `Failure` translation.
+  correct mapping and `Failure` translation. Where a real datasource is
+  exercised directly, inject `FakeLocalApiClient` (`test/helpers/`) instead
+  of a real `JsonLocalApiClient` — an in-memory double, no file I/O or
+  `path_provider` faking required.
 - **Presentation notifiers:** `ProviderContainer` + provider overrides
   (fake repository/usecase injected), asserting `AsyncValue`/state
   transitions.
@@ -559,11 +605,24 @@ presentation/features/profile/screens/edit_profile_screen.dart
   a `buildContainer({overrides})` helper so every notifier test doesn't
   re-declare the same boilerplate.
 - Golden/widget-tree integration tests are explicitly **not** required for
-  any module — see [Out of scope](#15-out-of-scope-on-purpose).
+  any module — see [Out of scope](#17-out-of-scope-on-purpose).
 
 ---
 
 ## 13. Engineering decision notes
+
+**Why a local-first mock backend instead of a real API or an in-memory
+list.** `assets/` is compiled read-only into the app bundle at build time —
+Flutter (and the underlying platform sandbox) never allows writing back
+into it at runtime. Copying the seed data once into the app's writable
+documents directory on first launch, and treating *that* copy as the single
+source of truth from then on, gets the best of both worlds: deterministic,
+inspectable seed data for a fresh install, and genuine read/write
+persistence for everything the user does afterward — without standing up
+or depending on a real backend. An in-memory list resets on hot restart and
+doesn't survive relaunch, which undersells the "register, then log back
+in" story; a real file write means the persistence is checkable, not
+simulated.
 
 **Why no Riverpod codegen.** Hand-written providers keep the dependency
 graph fully readable without running `build_runner` first. A commented-out
@@ -576,37 +635,59 @@ there's real logic to isolate (validation, coordination, business rules
 like required-option-group enforcement); a plain pass-through goes straight
 from repository to Notifier.
 
-**Why a JSON file on disk instead of an in-memory list for auth.** An
-in-memory list resets on hot restart and doesn't survive relaunch, which
-undersells the "register, then log back in" story. A real file write means
-the persistence is checkable, not simulated.
-
 **Why request-id guarding in Search, not just the debounce timer.** The
 debounce timer only reduces call *frequency*; it doesn't stop an earlier,
 slower request from resolving after a later, faster one and overwriting
-its results. Those are two different race conditions.
+its results. Those are two different race conditions, and only one of them
+is solved by debouncing.
 
 **Why the cart is single-restaurant.** Mirrors how every real food-delivery
 app actually works (one kitchen fulfills one order) — modeling a
 multi-restaurant cart would be solving a problem the domain doesn't have,
 just to look more "flexible."
 
+**Why `Result<Failure, T>` instead of thrown exceptions at every layer.**
+Expected failure modes (validation errors, duplicate email, not found,
+cart conflicts) are part of the domain, not exceptional circumstances —
+modeling them as typed return values makes every failure path visible at
+the call site and testable without `expect(() => ..., throwsA(...))`
+gymnastics. Exceptions are reserved for genuinely unexpected states (a
+corrupt JSON file, a missing asset).
+
 ---
 
-## 14. Suggested build order
+## 15. Suggested build order
 
-1. **Global Core** (Section 0) + **Shared data contracts** (Section 1)
+1. **Global Core** (Section 0) + **Shared data contracts** (Section 1) + **Mock data files** (Section 2)
 2. **Auth** — nothing else needs to be behind a login wall to be *built*, but doing this first makes `go_router`'s guard meaningful from day one
 3. **Home** (establishes the catalog repository the rest of the app reuses)
 4. **Restaurant Detail** → **Product Detail** (the centerpiece)
 5. **Cart** → **Checkout** → **Orders**
 6. **Search** (fully independent, safe to build any time after Home)
 7. **Profile** (touches Auth's writer, do last so the contract is stable)
-8. **go_router wiring** (Section 11) — can be stubbed early with placeholder screens and filled in as each module lands
+8. **go_router wiring** (Section 12) — can be stubbed early with placeholder screens and filled in as each module lands
 
 ---
 
-## 15. Out of scope, on purpose
+## 16. Dependencies
+
+```yaml
+dependencies:
+  flutter_riverpod      # state management — no codegen (see Section 13)
+  go_router              # declarative navigation + auth-aware redirects
+  path_provider          # locate the app's documents directory for the mock "backend"
+  shared_preferences      # session token persistence
+  uuid                    # id generation for users/orders/cart items
+  crypto                  # sha256 for demo-grade password hashing
+
+dev_dependencies:
+  fake_async              # deterministic timer testing (Debouncer, Search race guard)
+  mocktail                # fakes/mocks for repository & datasource test doubles
+```
+
+---
+
+## 17. Out of scope, on purpose
 
 - **Golden tests / full widget integration tests** — the UI itself isn't
   what's being evaluated here.

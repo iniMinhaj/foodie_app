@@ -1,17 +1,12 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:foodie_app/core/network/failures.dart';
-import 'package:foodie_app/core/storage/json_storage_service.dart';
 import 'package:foodie_app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:foodie_app/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 
-import '../../../../helpers/fake_path_provider.dart';
+import '../../../../helpers/fake_local_api_client.dart';
 
 // A known password + its sha256("foodie_demo_salt_v1" + password) hash,
 // matching AuthLocalDataSource's hashing scheme.
@@ -19,20 +14,14 @@ const _seededEmail = 'seed@foodie.com';
 const _seededPasswordHash = '3edb4f4bd30723ad8cbb671a836684b11ce36c42aa8c4dfc06ac9414a1bf692e'; // "Password123"
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  late Directory tempDir;
+  late FakeLocalApiClient storage;
   late AuthRepositoryImpl repository;
 
   setUp(() async {
-    tempDir = await Directory.systemTemp.createTemp('auth_repository_test');
-    PathProviderPlatform.instance = FakePathProviderPlatform(tempDir);
     SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
 
-    final mockDir = Directory('${tempDir.path}/mock')..createSync(recursive: true);
-    File('${mockDir.path}/users.json').writeAsStringSync(jsonEncode({
-      'status': 'success',
-      'data': [
+    storage = FakeLocalApiClient({
+      'users.json': [
         {
           'id': 'user_1',
           'email': _seededEmail,
@@ -40,18 +29,12 @@ void main() {
           'full_name': 'Seed User',
         },
       ],
-    }));
+    });
 
     repository = AuthRepositoryImpl(
-      local: AuthLocalDataSource(JsonStorageService()),
+      local: AuthLocalDataSource(storage),
       prefs: SharedPreferencesAsync(),
     );
-  });
-
-  tearDown(() async {
-    if (await tempDir.exists()) {
-      await tempDir.delete(recursive: true);
-    }
   });
 
   group('AuthRepositoryImpl.register', () {
@@ -60,20 +43,16 @@ void main() {
 
       expect(result.isOk, isTrue);
       expect(result.valueOrNull?.email, 'new@foodie.com');
-
-      final usersFile = File('${tempDir.path}/mock/users.json');
-      final envelope = jsonDecode(await usersFile.readAsString()) as Map<String, dynamic>;
-      expect((envelope['data'] as List).length, 2);
+      expect(storage.peek('users.json'), hasLength(2));
     });
 
     test('returns ConflictFailure and does not touch the file for a duplicate email', () async {
-      final usersFile = File('${tempDir.path}/mock/users.json');
-      final before = await usersFile.readAsString();
+      final before = storage.peek('users.json');
 
       final result = await repository.register('Someone Else', _seededEmail, 'password123');
 
       expect(result.failureOrNull, isA<ConflictFailure>());
-      expect(await usersFile.readAsString(), before);
+      expect(storage.peek('users.json'), before);
     });
   });
 

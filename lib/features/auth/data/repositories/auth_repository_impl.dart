@@ -1,11 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../../core/entities/user_profile.dart';
+import '../../domain/entities/user_profile.dart';
 import '../../../../core/network/failures.dart';
 import '../../../../core/network/result.dart';
 import '../../../../core/network/simulated_latency.dart';
-import '../../../../core/storage/json_storage_service.dart';
+import '../../../../core/storage/local_api_client.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/local/auth_local_datasource.dart';
 import '../models/user_model.dart';

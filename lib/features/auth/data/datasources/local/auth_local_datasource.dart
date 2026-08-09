@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 
-import '../../../../../core/storage/json_storage_service.dart';
+import '../../../../../core/storage/local_api_client.dart';
 import '../../models/user_model.dart';
 
 /// Demo-grade salted hash — good enough to prove "never store plaintext"
@@ -10,7 +10,7 @@ import '../../models/user_model.dart';
 const _demoSalt = 'foodie_demo_salt_v1';
 
 class AuthLocalDataSource {
-  final JsonStorageService storage;
+  final LocalApiClient storage;
   static const _fileName = 'users.json';
 
   const AuthLocalDataSource(this.storage);

@@ -1,7 +1,7 @@
-import '../../../../../core/entities/user_profile.dart';
-import '../../../../../core/network/failures.dart';
-import '../../../../../core/network/result.dart';
-import '../../repositories/auth_repository.dart';
+import '../entities/user_profile.dart';
+import '../../../../core/network/failures.dart';
+import '../../../../core/network/result.dart';
+import '../repositories/auth_repository.dart';
 
 /// Runs once at app start: resolves a persisted session token back into
 /// the `UserProfile` it belongs to, re-reading `users.json` so the

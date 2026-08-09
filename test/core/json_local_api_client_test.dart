@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:foodie_app/core/storage/json_storage_service.dart';
+import 'package:foodie_app/core/storage/json_local_api_client.dart';
+import 'package:foodie_app/core/storage/local_api_client.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 
 import '../helpers/fake_path_provider.dart';
@@ -11,12 +12,12 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late Directory tempDir;
-  late JsonStorageService storage;
+  late JsonLocalApiClient storage;
 
   setUp(() async {
     tempDir = await Directory.systemTemp.createTemp('json_storage_test');
     PathProviderPlatform.instance = FakePathProviderPlatform(tempDir);
-    storage = JsonStorageService();
+    storage = JsonLocalApiClient();
 
     final mockDir = Directory('${tempDir.path}/mock')..createSync(recursive: true);
     File('${mockDir.path}/things.json').writeAsStringSync(jsonEncode({
@@ -34,7 +35,7 @@ void main() {
     }
   });
 
-  group('JsonStorageService', () {
+  group('JsonLocalApiClient', () {
     test('readCollection returns the "data" array', () async {
       final result = await storage.readCollection('things.json');
 

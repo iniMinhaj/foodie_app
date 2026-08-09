@@ -15,8 +15,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: 'test@foodie.com');
+  final _passwordController = TextEditingController(text: 'test1234');
   bool _obscurePassword = true;
 
   @override
@@ -57,6 +57,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
           child: Form(
             key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -93,8 +94,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: _validateEmail,
-                  decoration:
-                      const InputDecoration(hintText: 'you@example.com'),
+                  decoration: const InputDecoration(hintText: 'Login Email'),
                 ),
                 SizedBox(height: AppSpacing.md),
                 Text('Password',
@@ -105,7 +105,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   obscureText: _obscurePassword,
                   validator: _validatePassword,
                   decoration: InputDecoration(
-                    hintText: '••••••••',
+                    hintText: 'Password',
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword

@@ -1,6 +1,6 @@
-import '../../../../../core/network/failures.dart';
-import '../../../../../core/network/result.dart';
-import '../../repositories/auth_repository.dart';
+import '../../../../core/network/failures.dart';
+import '../../../../core/network/result.dart';
+import '../repositories/auth_repository.dart';
 
 class LogoutUseCase {
   final AuthRepository repository;

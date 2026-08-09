@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "message": "Mock user database - local auth + profile simulation only",
+  "data": [
+    {
+      "id": "user_3001",
+      "email": "tanvir.ahmed@example.com",
+      "password_hash": "3edb4f4bd30723ad8cbb671a836684b11ce36c42aa8c4dfc06ac9414a1bf692e",
+      "full_name": "Tanvir Ahmed",
+      "phone": "+8801700000000",
+      "avatar_url": "https://cdn.example.com/avatars/user_3001.jpg",
+      "member_since": "2024-03-11T00:00:00Z",
+      "loyalty_points": 480,
+      "default_address_id": "addr_001",
+      "addresses": [
+        {
+          "id": "addr_001",
+          "label": "Home",
+          "line1": "House 22, Road 5, Dhanmondi",
+          "city": "Dhaka",
+          "postal_code": "1209",
+          "lat": 23.7449,
+          "lng": 90.3760,
+          "is_default": true
+        },
+        {
+          "id": "addr_002",
+          "label": "Office",
+          "line1": "Level 6, Bashundhara City, Panthapath",
+          "city": "Dhaka",
+          "postal_code": "1205",
+          "lat": 23.7508,
+          "lng": 90.3915,
+          "is_default": false
+        }
+      ],
+      "payment_methods": [
+        {
+          "id": "pm_001",
+          "type": "card",
+          "brand": "visa",
+          "last4": "4242",
+          "is_default": true
+        },
+        {
+          "id": "pm_002",
+          "type": "mobile_wallet",
+          "provider": "bKash",
+          "masked_number": "017XXXXX00",
+          "is_default": false
+        },
+        {
+          "id": "pm_003",
+          "type": "cash_on_delivery",
+          "is_default": false
+        }
+      ],
+      "preferences": {
+        "notifications_enabled": true,
+        "preferred_language": "en",
+        "dark_mode": false
+      }
+    },
+    {
+      "id": "user_3002",
+      "email": "test@foodie.com",
+      "password_hash": "564a5ec4cc9832b718790fabf9fb746dab0d6d7267eafa01164402f5f10f3608",
+      "full_name": "Test User",
+      "phone": "+8801800000000",
+      "avatar_url": "https://cdn.example.com/avatars/user_3002.jpg",
+      "member_since": "2024-06-01T00:00:00Z",
+      "loyalty_points": 0,
+      "default_address_id": null,
+      "addresses": [],
+      "payment_methods": [
+        {
+          "id": "pm_101",
+          "type": "cash_on_delivery",
+          "is_default": true
+        }
+      ],
+      "preferences": {
+        "notifications_enabled": true,
+        "preferred_language": "en",
+        "dark_mode": false
+      }
+    }
+  ]
+}

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_theme.dart';
+import '../../features/cart/presentation/providers/cart_notifier.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
-import '../utils/cart_service.dart';
 
 /// TODO: Riverpod - `_selectedAddressIndex`/`_selectedPaymentIndex`/
 /// `_isPlacingOrder` become fields on a `CheckoutState`, driven by a
 /// `CheckoutNotifier`. `_placeOrder`'s try/simulate-delay/catch shape is
 /// exactly what an AsyncNotifier's `build()` + a manual `state =
 /// AsyncLoading()` pattern looks like once wired to a real order-placement
-/// repository call.
-class CheckoutScreen extends StatefulWidget {
+/// repository call. Cart itself is already migrated (`cartNotifierProvider`)
+/// — this screen just reads/clears it.
+class CheckoutScreen extends ConsumerStatefulWidget {
   const CheckoutScreen({super.key});
 
   @override
-  State<CheckoutScreen> createState() => _CheckoutScreenState();
+  ConsumerState<CheckoutScreen> createState() => _CheckoutScreenState();
 }
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
+class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
   int _selectedAddressIndex = 0;
   int _selectedPaymentIndex = 0;
   bool _isPlacingOrder = false;
@@ -39,7 +41,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
 
-    CartService.instance.clear();
+    await ref.read(cartNotifierProvider.notifier).clear();
+    if (!mounted) return;
 
     showDialog(
       context: context,
@@ -82,7 +85,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final total = CartService.instance.subtotal + 1.99 + 0.5;
+    final subtotal = ref.watch(cartNotifierProvider).value?.subtotal ?? 0;
+    final total = subtotal + 1.99 + 0.5;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Checkout')),

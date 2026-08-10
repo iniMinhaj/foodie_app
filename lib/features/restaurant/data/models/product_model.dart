@@ -89,5 +89,6 @@ class ProductModel {
         id: json['id'] as String,
         label: json['label'] as String,
         priceDelta: (json['price_delta'] as num?)?.toDouble() ?? 0,
+        isDefault: json['is_default'] as bool? ?? false,
       );
 }

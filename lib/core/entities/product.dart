@@ -5,10 +5,19 @@ class OptionChoice extends Equatable {
   final String label;
   final double priceDelta;
 
-  const OptionChoice({required this.id, required this.label, required this.priceDelta});
+  /// Pre-selected when a product's options sheet first opens, so the shown
+  /// price already reflects what a real menu would default to.
+  final bool isDefault;
+
+  const OptionChoice({
+    required this.id,
+    required this.label,
+    required this.priceDelta,
+    this.isDefault = false,
+  });
 
   @override
-  List<Object?> get props => [id, label, priceDelta];
+  List<Object?> get props => [id, label, priceDelta, isDefault];
 }
 
 /// `maxSelect == 1` renders as a radio group, `> 1` as a checkbox group.

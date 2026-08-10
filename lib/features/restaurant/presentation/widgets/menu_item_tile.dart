@@ -4,10 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/entities/product.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/app_image.dart';
+import '../../../../legacy/models/cart_item_model.dart';
+import '../../../../legacy/models/product_model.dart' as legacy;
+import '../../../../legacy/utils/cart_service.dart';
 
-/// Read-only menu row — tapping into Product Detail isn't wired up yet
-/// (that module doesn't exist), so unavailable items are just visibly
-/// disabled and not tappable, per the module's acceptance criteria.
+/// Read-only menu row (tapping into Product Detail isn't wired up yet, that
+/// module doesn't exist) except for the [_AddToCartControl], which adds a
+/// single, unconfigured unit of the product straight to [CartService] — no
+/// variation/extras picker at this list-tile level.
 class MenuItemTile extends StatelessWidget {
   final Product product;
 
@@ -28,11 +32,29 @@ class MenuItemTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppImage(
-              url: product.imageUrl,
-              width: 72.w,
-              height: 72.w,
-              borderRadius: BorderRadius.circular(AppRadius.sm),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                AppImage(
+                  url: product.imageUrl,
+                  width: 88.w,
+                  height: 88.w,
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                ),
+                if (product.tags.contains('Bestseller'))
+                  Positioned(
+                    top: 4.h,
+                    left: 4.w,
+                    child: const _BestsellerBadge(),
+                  ),
+                if (product.isAvailable)
+                  Positioned(
+                    bottom: -14.h,
+                    left: 8.w,
+                    right: 8.w,
+                    child: _AddToCartControl(product: product),
+                  ),
+              ],
             ),
             SizedBox(width: AppSpacing.sm),
             Expanded(
@@ -40,7 +62,10 @@ class MenuItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      _VegIndicator(isVegetarian: product.isVegetarian),
+                      SizedBox(width: 6.w),
                       Expanded(
                         child: Text(product.name, style: Theme.of(context).textTheme.titleMedium),
                       ),
@@ -51,24 +76,8 @@ class MenuItemTile extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 4.h),
-                  Text(
-                    product.description,
-                    style: Theme.of(context).textTheme.bodySmall,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 4.h),
                   Row(
                     children: [
-                      if (product.hasDiscount) ...[
-                        Text(
-                          '\$${product.basePrice.toStringAsFixed(2)}',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                decoration: TextDecoration.lineThrough,
-                              ),
-                        ),
-                        SizedBox(width: AppSpacing.xs),
-                      ],
                       Text(
                         '\$${product.effectivePrice.toStringAsFixed(2)}',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -76,7 +85,32 @@ class MenuItemTile extends StatelessWidget {
                               color: AppColors.primary,
                             ),
                       ),
+                      if (product.hasDiscount) ...[
+                        SizedBox(width: AppSpacing.xs),
+                        Text(
+                          '\$${product.basePrice.toStringAsFixed(2)}',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                        ),
+                      ],
+                      if (product.rating > 0) ...[
+                        SizedBox(width: AppSpacing.sm),
+                        const Icon(Icons.star_rounded, size: 14, color: AppColors.warning),
+                        SizedBox(width: 2.w),
+                        Text(
+                          product.rating.toStringAsFixed(1),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
                     ],
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    product.description,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -100,6 +134,180 @@ class _UnavailableBadge extends StatelessWidget {
         'Unavailable',
         style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w700, color: Colors.white),
       ),
+    );
+  }
+}
+
+class _BestsellerBadge extends StatelessWidget {
+  const _BestsellerBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(AppRadius.sm),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 3, offset: const Offset(0, 1)),
+        ],
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'Bestseller',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w700, color: Colors.white),
+      ),
+    );
+  }
+}
+
+/// Zomato's veg/non-veg marker: a green square+dot for [Product.isVegetarian],
+/// a brown one otherwise (menu data doesn't distinguish non-veg any further).
+class _VegIndicator extends StatelessWidget {
+  final bool isVegetarian;
+  const _VegIndicator({required this.isVegetarian});
+
+  @override
+  Widget build(BuildContext context) {
+    final color = isVegetarian ? AppColors.success : const Color(0xFF8B4A2B);
+    return Container(
+      width: 14.w,
+      height: 14.w,
+      margin: EdgeInsets.only(top: 3.h),
+      padding: EdgeInsets.all(2.w),
+      decoration: BoxDecoration(
+        border: Border.all(color: color, width: 1.2),
+        borderRadius: BorderRadius.circular(2.r),
+      ),
+      child: Container(
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      ),
+    );
+  }
+}
+
+/// Bridges this (Clean Architecture) feature's [Product] into the legacy
+/// [CartService] singleton — the only cart implementation actually wired up
+/// to a visible screen (Home's Cart tab). Renders "ADD" while the product
+/// has no matching cart line, or a +/- stepper once it does.
+class _AddToCartControl extends StatelessWidget {
+  final Product product;
+  const _AddToCartControl({required this.product});
+
+  static bool _isPlainLine(CartItemModel item, String productId) =>
+      item.product.id == productId && item.selectedVariations.isEmpty && item.selectedExtras.isEmpty;
+
+  static legacy.ProductModel _toLegacyProduct(Product p) => legacy.ProductModel(
+        id: p.id,
+        restaurantId: p.restaurantId,
+        name: p.name,
+        description: p.description,
+        imageUrls: p.imageUrl.isEmpty ? const [] : [p.imageUrl],
+        basePrice: p.basePrice,
+        discountPrice: p.discountPrice,
+        isAvailable: p.isAvailable,
+        isFeatured: p.tags.contains('Bestseller'),
+        rating: p.rating,
+        totalReviews: 0,
+        preparationTimeMinutes: 15,
+        tags: p.tags,
+        variationGroups: const [],
+        extraGroups: const [],
+      );
+
+  void _addOne(BuildContext context) {
+    final cart = CartService.instance;
+    final existing = cart.items.where((item) => _isPlainLine(item, product.id));
+    if (existing.isNotEmpty) {
+      final item = existing.first;
+      cart.updateQuantity(item.cartItemId, item.quantity + 1);
+      return;
+    }
+    cart.addItem(CartItemModel(
+      cartItemId: '${product.id}_${DateTime.now().microsecondsSinceEpoch}',
+      product: _toLegacyProduct(product),
+      quantity: 1,
+      selectedVariations: const [],
+      selectedExtras: const [],
+    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${product.name} added to cart'), duration: const Duration(seconds: 2)),
+    );
+  }
+
+  void _removeOne() {
+    final cart = CartService.instance;
+    final existing = cart.items.where((item) => _isPlainLine(item, product.id));
+    if (existing.isEmpty) return;
+    final item = existing.first;
+    cart.updateQuantity(item.cartItemId, item.quantity - 1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: CartService.instance,
+      builder: (context, _) {
+        final existing = CartService.instance.items.where((item) => _isPlainLine(item, product.id));
+        final quantity = existing.isEmpty ? 0 : existing.first.quantity;
+
+        if (quantity == 0) {
+          return GestureDetector(
+            onTap: () => _addOne(context),
+            child: Container(
+              height: 30.h,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(AppRadius.sm),
+                border: Border.all(color: AppColors.primary, width: 1.4),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.12), blurRadius: 4, offset: const Offset(0, 2)),
+                ],
+              ),
+              child: Text(
+                'ADD',
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: 0.5),
+              ),
+            ),
+          );
+        }
+
+        return Container(
+          height: 30.h,
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(AppRadius.sm),
+            boxShadow: [
+              BoxShadow(color: Colors.black.withValues(alpha: 0.12), blurRadius: 4, offset: const Offset(0, 2)),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _StepIcon(icon: Icons.remove_rounded, onTap: _removeOne),
+              Text('$quantity', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: Colors.white)),
+              _StepIcon(icon: Icons.add_rounded, onTap: () => _addOne(context)),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _StepIcon extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+  const _StepIcon({required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: SizedBox(width: 22.w, height: 30.h, child: Icon(icon, size: 14, color: Colors.white)),
     );
   }
 }

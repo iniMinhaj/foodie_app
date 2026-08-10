@@ -5,13 +5,14 @@ import '../../../../core/entities/product.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/app_image.dart';
 import '../../../../legacy/models/cart_item_model.dart';
-import '../../../../legacy/models/product_model.dart' as legacy;
 import '../../../../legacy/utils/cart_service.dart';
+import 'product_options_sheet.dart';
 
 /// Read-only menu row (tapping into Product Detail isn't wired up yet, that
-/// module doesn't exist) except for the [_AddToCartControl], which adds a
-/// single, unconfigured unit of the product straight to [CartService] — no
-/// variation/extras picker at this list-tile level.
+/// module doesn't exist) except for the [_AddToCartControl]: for a plain
+/// product it adds a single unconfigured unit straight to [CartService]; for
+/// one with variations/extras it opens [ProductOptionsSheet] instead, since a
+/// flat quantity add can't capture which options were chosen.
 class MenuItemTile extends StatelessWidget {
   final Product product;
 
@@ -30,7 +31,7 @@ class MenuItemTile extends StatelessWidget {
           border: Border.all(color: AppColors.border),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Stack(
               clipBehavior: Clip.none,
@@ -46,13 +47,6 @@ class MenuItemTile extends StatelessWidget {
                     top: 4.h,
                     left: 4.w,
                     child: const _BestsellerBadge(),
-                  ),
-                if (product.isAvailable)
-                  Positioned(
-                    bottom: -14.h,
-                    left: 8.w,
-                    right: 8.w,
-                    child: _AddToCartControl(product: product),
                   ),
               ],
             ),
@@ -115,6 +109,10 @@ class MenuItemTile extends StatelessWidget {
                 ],
               ),
             ),
+            if (product.isAvailable) ...[
+              SizedBox(width: AppSpacing.sm),
+              _AddToCartControl(product: product),
+            ],
           ],
         ),
       ),
@@ -189,32 +187,19 @@ class _VegIndicator extends StatelessWidget {
 
 /// Bridges this (Clean Architecture) feature's [Product] into the legacy
 /// [CartService] singleton — the only cart implementation actually wired up
-/// to a visible screen (Home's Cart tab). Renders "ADD" while the product
-/// has no matching cart line, or a +/- stepper once it does.
+/// to a visible screen (Home's Cart tab). A plain product renders "ADD"
+/// (adding a single unconfigured unit directly) then a +/- stepper once it
+/// has a matching cart line; a product with variations/extras always shows
+/// "ADD" and opens [ProductOptionsSheet] instead, since there's no single
+/// "the" cart line for it to step through at this list-tile level.
 class _AddToCartControl extends StatelessWidget {
   final Product product;
   const _AddToCartControl({required this.product});
 
+  bool get _hasOptions => product.variationGroups.isNotEmpty || product.extraGroups.isNotEmpty;
+
   static bool _isPlainLine(CartItemModel item, String productId) =>
       item.product.id == productId && item.selectedVariations.isEmpty && item.selectedExtras.isEmpty;
-
-  static legacy.ProductModel _toLegacyProduct(Product p) => legacy.ProductModel(
-        id: p.id,
-        restaurantId: p.restaurantId,
-        name: p.name,
-        description: p.description,
-        imageUrls: p.imageUrl.isEmpty ? const [] : [p.imageUrl],
-        basePrice: p.basePrice,
-        discountPrice: p.discountPrice,
-        isAvailable: p.isAvailable,
-        isFeatured: p.tags.contains('Bestseller'),
-        rating: p.rating,
-        totalReviews: 0,
-        preparationTimeMinutes: 15,
-        tags: p.tags,
-        variationGroups: const [],
-        extraGroups: const [],
-      );
 
   void _addOne(BuildContext context) {
     final cart = CartService.instance;
@@ -226,7 +211,7 @@ class _AddToCartControl extends StatelessWidget {
     }
     cart.addItem(CartItemModel(
       cartItemId: '${product.id}_${DateTime.now().microsecondsSinceEpoch}',
-      product: _toLegacyProduct(product),
+      product: productToLegacyModel(product),
       quantity: 1,
       selectedVariations: const [],
       selectedExtras: const [],
@@ -244,8 +229,37 @@ class _AddToCartControl extends StatelessWidget {
     cart.updateQuantity(item.cartItemId, item.quantity - 1);
   }
 
+  Widget _addButton(VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 56.w,
+        height: 28.h,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+          border: Border.all(color: AppColors.primary, width: 1.4),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.12), blurRadius: 4, offset: const Offset(0, 2)),
+          ],
+        ),
+        child: Text(
+          'ADD',
+          style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: 0.5),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // A configurable product has no single cart line to step through here —
+    // every tap opens the sheet, which owns its own quantity picker.
+    if (_hasOptions) {
+      return _addButton(() => showProductOptionsSheet(context, product));
+    }
+
     return AnimatedBuilder(
       animation: CartService.instance,
       builder: (context, _) {
@@ -253,29 +267,12 @@ class _AddToCartControl extends StatelessWidget {
         final quantity = existing.isEmpty ? 0 : existing.first.quantity;
 
         if (quantity == 0) {
-          return GestureDetector(
-            onTap: () => _addOne(context),
-            child: Container(
-              height: 30.h,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: AppColors.surface,
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-                border: Border.all(color: AppColors.primary, width: 1.4),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: 0.12), blurRadius: 4, offset: const Offset(0, 2)),
-                ],
-              ),
-              child: Text(
-                'ADD',
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: 0.5),
-              ),
-            ),
-          );
+          return _addButton(() => _addOne(context));
         }
 
         return Container(
-          height: 30.h,
+          width: 72.w,
+          height: 28.h,
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(AppRadius.sm),
@@ -287,7 +284,7 @@ class _AddToCartControl extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _StepIcon(icon: Icons.remove_rounded, onTap: _removeOne),
-              Text('$quantity', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: Colors.white)),
+              Text('$quantity', style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w800, color: Colors.white)),
               _StepIcon(icon: Icons.add_rounded, onTap: () => _addOne(context)),
             ],
           ),
@@ -307,7 +304,7 @@ class _StepIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(width: 22.w, height: 30.h, child: Icon(icon, size: 14, color: Colors.white)),
+      child: SizedBox(width: 20.w, height: 28.h, child: Icon(icon, size: 14, color: Colors.white)),
     );
   }
 }

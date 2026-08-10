@@ -68,8 +68,11 @@ class RestaurantListNotifier extends Notifier<PaginatedState<Restaurant>> {
   }
 
   /// Resets to page 1 and re-hits the (simulated) network, ignoring any
-  /// warm cache for the current category.
+  /// warm cache. Also clears the category filter so pull-to-refresh acts
+  /// as a full reset back to the unfiltered list.
   Future<void> refresh() async {
+    _categoryId = null;
+    ref.read(selectedCategoryIdProvider.notifier).select(null);
     ref.read(_restaurantListCacheProvider).invalidate(_cacheKey);
     state = PaginatedState<Restaurant>.initial();
     await _fetchPage(1);

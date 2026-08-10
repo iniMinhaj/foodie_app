@@ -112,6 +112,7 @@ class _HomeBody extends ConsumerWidget {
       onRefresh: () => ref.read(restaurantListNotifierProvider.notifier).refresh(),
       child: CustomScrollView(
         controller: scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           const SliverToBoxAdapter(child: _Header()),
           const SliverToBoxAdapter(child: _CategoryRow()),

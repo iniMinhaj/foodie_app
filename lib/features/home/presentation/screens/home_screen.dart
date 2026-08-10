@@ -6,11 +6,12 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/section_header.dart';
 import '../../../../core/widgets/shimmer_placeholders.dart';
 import '../../../../core/widgets/state_views.dart';
-import '../../../../legacy/cart/cart_screen.dart';
 import '../../../../legacy/orders/order_history_screen.dart';
 import '../../../../legacy/profile/profile_screen.dart';
 import '../../../../legacy/search/search_screen.dart';
 import '../../../auth/presentation/providers/auth_notifier.dart';
+import '../../../cart/presentation/providers/cart_notifier.dart';
+import '../../../cart/presentation/screens/cart_screen.dart';
 import '../../../restaurant/presentation/screens/restaurant_detail_screen.dart';
 import '../providers/categories_provider.dart';
 import '../providers/restaurant_list_notifier.dart';
@@ -18,9 +19,10 @@ import '../widgets/category_chip.dart';
 import '../widgets/restaurant_card.dart';
 
 /// Home tab plus a lightweight bottom-nav bridge into the still-legacy
-/// Orders/Cart/Profile screens — those become their own Clean Architecture
-/// modules later (see docs/MIGRATION_STATUS.md); until then this is the
-/// only way to reach them from a fully-migrated screen.
+/// Orders/Profile screens — those become their own Clean Architecture
+/// modules later (see docs/MIGRATION_STATUS.md); Cart is migrated and
+/// wired in directly. This is the only way to reach Orders/Profile from a
+/// fully-migrated screen.
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
@@ -84,8 +86,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             label: 'Orders',
           ),
           NavigationDestination(
-            icon: Icon(Icons.shopping_bag_outlined),
-            selectedIcon: Icon(Icons.shopping_bag_rounded),
+            icon: _CartIcon(icon: Icons.shopping_bag_outlined),
+            selectedIcon: _CartIcon(icon: Icons.shopping_bag_rounded),
             label: 'Cart',
           ),
           NavigationDestination(
@@ -266,6 +268,24 @@ class _CategoryRow extends ConsumerWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+/// Bottom-nav cart icon with an item-count badge — the one visible payoff
+/// of centralizing cart state app-wide instead of leaving it screen-local.
+class _CartIcon extends ConsumerWidget {
+  final IconData icon;
+  const _CartIcon({required this.icon});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final itemCount = ref.watch(cartNotifierProvider).value?.itemCount ?? 0;
+    if (itemCount == 0) return Icon(icon);
+    return Badge(
+      label: Text('$itemCount'),
+      backgroundColor: AppColors.primary,
+      child: Icon(icon),
     );
   }
 }

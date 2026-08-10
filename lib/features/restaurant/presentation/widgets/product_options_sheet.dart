@@ -1,32 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uuid/uuid.dart';
 
+import '../../../../core/entities/cart_item.dart';
 import '../../../../core/entities/product.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../../../legacy/models/cart_item_model.dart';
-import '../../../../legacy/models/product_model.dart' as legacy;
-import '../../../../legacy/utils/cart_service.dart';
+import '../../../cart/presentation/utils/add_to_cart.dart';
 
-/// Bridges a Clean Architecture [Product] into the legacy [ProductModel]
-/// shape [CartItemModel] is built around — shared by [ProductOptionsSheet]
-/// and [MenuItemTile]'s plain (no options) add path.
-legacy.ProductModel productToLegacyModel(Product p) => legacy.ProductModel(
-      id: p.id,
-      restaurantId: p.restaurantId,
-      name: p.name,
-      description: p.description,
-      imageUrls: p.imageUrl.isEmpty ? const [] : [p.imageUrl],
-      basePrice: p.basePrice,
-      discountPrice: p.discountPrice,
-      isAvailable: p.isAvailable,
-      isFeatured: p.tags.contains('Bestseller'),
-      rating: p.rating,
-      totalReviews: 0,
-      preparationTimeMinutes: 15,
-      tags: p.tags,
-      variationGroups: const [],
-      extraGroups: const [],
-    );
+const _uuid = Uuid();
 
 /// Entry point for the "has variations/extras" add path — a product detail
 /// picker shown as a modal sheet (not a full screen push) so choosing
@@ -40,15 +22,15 @@ void showProductOptionsSheet(BuildContext context, Product product) {
   );
 }
 
-class ProductOptionsSheet extends StatefulWidget {
+class ProductOptionsSheet extends ConsumerStatefulWidget {
   final Product product;
   const ProductOptionsSheet({super.key, required this.product});
 
   @override
-  State<ProductOptionsSheet> createState() => _ProductOptionsSheetState();
+  ConsumerState<ProductOptionsSheet> createState() => _ProductOptionsSheetState();
 }
 
-class _ProductOptionsSheetState extends State<ProductOptionsSheet> {
+class _ProductOptionsSheetState extends ConsumerState<ProductOptionsSheet> {
   // groupId -> selected choice ids. Single-select groups (maxSelect <= 1)
   // are just represented as a set that never grows past size 1 — one map
   // covers both radio- and checkbox-style groups without extra bookkeeping.
@@ -113,21 +95,21 @@ class _ProductOptionsSheetState extends State<ProductOptionsSheet> {
     });
   }
 
-  List<SelectedOption> _selectedOptionsFor(OptionGroup group) {
+  List<CartItemOption> _selectedOptionsFor(OptionGroup group) {
     final selectedIds = _selections[group.id] ?? const {};
     return group.choices
         .where((c) => selectedIds.contains(c.id))
-        .map((c) => SelectedOption(
+        .map((c) => CartItemOption(
               groupId: group.id,
               groupName: group.name,
-              optionId: c.id,
-              optionLabel: c.label,
+              choiceId: c.id,
+              choiceLabel: c.label,
               priceDelta: c.priceDelta,
             ))
         .toList();
   }
 
-  void _addToCart() {
+  Future<void> _addToCart() async {
     if (_missingRequiredGroups.isNotEmpty) {
       setState(() => _showValidationErrors = true);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -137,13 +119,20 @@ class _ProductOptionsSheetState extends State<ProductOptionsSheet> {
     }
 
     final product = widget.product;
-    CartService.instance.addItem(CartItemModel(
-      cartItemId: '${product.id}_${DateTime.now().microsecondsSinceEpoch}',
-      product: productToLegacyModel(product),
+    final item = CartItem(
+      id: _uuid.v4(),
+      productId: product.id,
+      restaurantId: product.restaurantId,
+      productName: product.name,
+      productImageUrl: product.imageUrl,
+      unitBasePrice: product.effectivePrice,
       quantity: _quantity,
       selectedVariations: product.variationGroups.expand(_selectedOptionsFor).toList(),
       selectedExtras: product.extraGroups.expand(_selectedOptionsFor).toList(),
-    ));
+    );
+
+    await addToCart(context, ref, item);
+    if (!mounted) return;
 
     Navigator.pop(context);
     ScaffoldMessenger.of(context).showSnackBar(

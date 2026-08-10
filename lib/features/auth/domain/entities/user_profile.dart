@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'address.dart';
+import '../../../../core/entities/address.dart';
 
 class UserProfile extends Equatable {
   final String id;

@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:foodie_app/core/network/failures.dart';
 import 'package:foodie_app/core/network/result.dart';
 import 'package:foodie_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:foodie_app/features/auth/domain/usecases/auth/restore_session_use_case.dart';
+import 'package:foodie_app/features/auth/domain/usecases/restore_session_use_case.dart';
 
 import '../../../../../helpers/fake_auth_repository.dart';
 

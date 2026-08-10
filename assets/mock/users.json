@@ -4,9 +4,9 @@
   "data": [
     {
       "id": "user_3001",
-      "email": "tanvir.ahmed@example.com",
-      "password_hash": "3edb4f4bd30723ad8cbb671a836684b11ce36c42aa8c4dfc06ac9414a1bf692e",
-      "full_name": "Tanvir Ahmed",
+      "email": "minhajul.islam@example.com",
+      "password_hash": "61d00aecd2ca9419e49470b16ed0b82c342ffc5e93c5d9773d697af3775a6173",
+      "full_name": "Minhajul Islam",
       "phone": "+8801700000000",
       "avatar_url": "https://cdn.example.com/avatars/user_3001.jpg",
       "member_since": "2024-03-11T00:00:00Z",

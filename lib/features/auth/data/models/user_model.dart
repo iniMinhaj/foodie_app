@@ -1,10 +1,10 @@
 import '../../../../core/entities/address.dart';
-import '../../../../core/entities/user_profile.dart';
+import '../../domain/entities/user_profile.dart';
 
 /// Full-fidelity model for one row of `users.json`. Carries fields Auth
 /// itself never reads (`loyaltyPoints`, `paymentMethods`, `preferences`,
 /// ...) so that when the Auth repository rewrites the *whole* file via
-/// `JsonStorageService.writeCollection`, every other user's profile data
+/// `LocalApiClient.writeCollection`, every other user's profile data
 /// round-trips unchanged instead of being silently dropped.
 class UserModel {
   final String id;

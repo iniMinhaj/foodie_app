@@ -17,8 +17,8 @@
       "slug": "chicken-biryani",
       "description": "Fragrant basmati rice slow-cooked with tender chicken, caramelized onions and a house blend of aromatic spices.",
       "image_urls": [
-        "https://cdn.example.com/products/chicken_biryani_1.jpg",
-        "https://cdn.example.com/products/chicken_biryani_2.jpg"
+        "https://loremflickr.com/600/400/biryani?lock=11001",
+        "https://loremflickr.com/600/400/biryani?lock=11002"
       ],
       "base_price": 6.5,
       "discount_price": 5.75,
@@ -84,8 +84,8 @@
       "slug": "classic-beef-burger",
       "description": "Juicy grilled beef patty with cheddar cheese, lettuce, tomato and our signature sauce in a toasted brioche bun.",
       "image_urls": [
-        "https://cdn.example.com/products/beef_burger_1.jpg",
-        "https://cdn.example.com/products/beef_burger_2.jpg"
+        "https://loremflickr.com/600/400/burger?lock=12001",
+        "https://loremflickr.com/600/400/burger?lock=12002"
       ],
       "base_price": 4.99,
       "discount_price": null,
@@ -160,7 +160,7 @@
       "slug": "margherita-pizza",
       "description": "Wood-fired classic with San Marzano tomato sauce, fresh mozzarella and basil leaves.",
       "image_urls": [
-        "https://cdn.example.com/products/margherita_1.jpg"
+        "https://loremflickr.com/600/400/pizza,margherita?lock=13001"
       ],
       "base_price": 9.0,
       "discount_price": 7.99,
@@ -237,7 +237,7 @@
       "slug": "grilled-chicken-salad-bowl",
       "description": "Grilled chicken breast over mixed greens, cherry tomatoes, cucumber and a light lemon vinaigrette.",
       "image_urls": [
-        "https://cdn.example.com/products/salad_bowl_1.jpg"
+        "https://loremflickr.com/600/400/salad,chicken?lock=14001"
       ],
       "base_price": 5.5,
       "discount_price": null,
@@ -290,7 +290,7 @@
       "slug": "chicken-fried-rice",
       "description": "Wok-tossed rice with chicken, egg, spring onion and soy sauce.",
       "image_urls": [
-        "https://cdn.example.com/products/fried_rice_1.jpg"
+        "https://loremflickr.com/600/400/fried-rice?lock=15001"
       ],
       "base_price": 4.25,
       "discount_price": 3.75,

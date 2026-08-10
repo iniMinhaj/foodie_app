@@ -1,17 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/entities/user_profile.dart';
+import '../../domain/entities/user_profile.dart';
 import '../../../../core/providers/core_providers.dart';
 import '../../data/datasources/local/auth_local_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../../domain/usecases/auth/login_use_case.dart';
-import '../../domain/usecases/auth/logout_use_case.dart';
-import '../../domain/usecases/auth/register_use_case.dart';
-import '../../domain/usecases/auth/restore_session_use_case.dart';
+import '../../domain/usecases/login_use_case.dart';
+import '../../domain/usecases/logout_use_case.dart';
+import '../../domain/usecases/register_use_case.dart';
+import '../../domain/usecases/restore_session_use_case.dart';
 
 final authLocalDataSourceProvider = Provider<AuthLocalDataSource>((ref) {
-  return AuthLocalDataSource(ref.watch(jsonStorageServiceProvider));
+  return AuthLocalDataSource(ref.watch(localApiClientProvider));
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 
 /// Copies the bundled `assets/mock/*.json` files into the app's
-/// documents directory on first run, so [JsonStorageService] has a
+/// documents directory on first run, so [LocalApiClient] has a
 /// mutable, per-install copy to read/write — the bundled assets
 /// themselves are never touched.
 class AssetSeeder {

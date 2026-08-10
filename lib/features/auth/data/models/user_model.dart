@@ -1,4 +1,5 @@
 import '../../../../core/entities/address.dart';
+import '../../../../core/entities/payment_method.dart';
 import '../../domain/entities/user_profile.dart';
 
 /// Full-fidelity model for one row of `users.json`. Carries fields Auth
@@ -42,6 +43,9 @@ class UserModel {
         phone: phone,
         avatarUrl: avatarUrl,
         addresses: addresses,
+        loyaltyPoints: loyaltyPoints,
+        memberSince: memberSince == null ? null : DateTime.tryParse(memberSince!),
+        paymentMethods: paymentMethods.map(_paymentMethodFromJson).toList(),
       );
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -94,4 +98,31 @@ class UserModel {
         'city': address.city,
         'is_default': address.isDefault,
       };
+
+  /// Derives the one display [PaymentMethod.label] Profile needs to render
+  /// from whichever raw fields that payment type actually carries — see
+  /// [PaymentMethod]'s own doc comment for why the domain layer stays this
+  /// lean instead of modeling brand/last4/provider/masked_number itself.
+  static PaymentMethod _paymentMethodFromJson(Map<String, dynamic> json) {
+    final type = switch (json['type'] as String? ?? 'cash_on_delivery') {
+      'card' => PaymentMethodType.card,
+      'mobile_wallet' => PaymentMethodType.wallet,
+      _ => PaymentMethodType.cod,
+    };
+    final label = switch (type) {
+      PaymentMethodType.card =>
+        '${_titleCase(json['brand'] as String? ?? 'Card')} •••• ${json['last4'] as String? ?? '????'}',
+      PaymentMethodType.wallet =>
+        '${json['provider'] as String? ?? 'Wallet'} (${json['masked_number'] as String? ?? ''})',
+      PaymentMethodType.cod => 'Cash on Delivery',
+    };
+    return PaymentMethod(
+      id: json['id'] as String,
+      type: type,
+      label: label,
+      isDefault: json['is_default'] as bool? ?? false,
+    );
+  }
+
+  static String _titleCase(String s) => s.isEmpty ? s : '${s[0].toUpperCase()}${s.substring(1)}';
 }

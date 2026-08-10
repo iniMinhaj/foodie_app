@@ -9,6 +9,9 @@ class ProductModel {
   final double basePrice;
   final double? discountPrice;
   final bool isAvailable;
+  final String categoryName;
+  final List<String> tags;
+  final double rating;
   final List<OptionGroup> variationGroups;
   final List<OptionGroup> extraGroups;
 
@@ -21,6 +24,9 @@ class ProductModel {
     required this.basePrice,
     required this.discountPrice,
     required this.isAvailable,
+    required this.categoryName,
+    required this.tags,
+    required this.rating,
     required this.variationGroups,
     required this.extraGroups,
   });
@@ -34,6 +40,9 @@ class ProductModel {
         basePrice: basePrice,
         discountPrice: discountPrice,
         isAvailable: isAvailable,
+        categoryName: categoryName,
+        tags: tags,
+        rating: rating,
         variationGroups: variationGroups,
         extraGroups: extraGroups,
       );
@@ -49,6 +58,9 @@ class ProductModel {
       basePrice: (json['base_price'] as num?)?.toDouble() ?? 0,
       discountPrice: (json['discount_price'] as num?)?.toDouble(),
       isAvailable: json['is_available'] as bool? ?? true,
+      categoryName: json['menu_category'] as String? ?? 'Menu',
+      tags: (json['tags'] as List<dynamic>? ?? const []).map((e) => e as String).toList(),
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
       variationGroups: (json['variation_groups'] as List<dynamic>? ?? const [])
           .map((e) => _groupFromJson(e as Map<String, dynamic>))
           .toList(),

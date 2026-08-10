@@ -43,6 +43,17 @@ class Product extends Equatable {
   final double? discountPrice;
   final bool isAvailable;
 
+  /// The Zomato-style menu section this item is grouped under on the
+  /// Restaurant Detail screen (e.g. "Recommended", "Main Course"). Distinct
+  /// from `home`'s global cuisine categories (Pizza/Burger/...) — this is
+  /// per-restaurant menu structure, not a cross-restaurant filter.
+  final String categoryName;
+
+  /// Small badges surfaced on the menu tile (e.g. "Bestseller", "Spicy",
+  /// "Vegetarian") — "Vegetarian" also drives the veg/non-veg indicator dot.
+  final List<String> tags;
+  final double rating;
+
   /// Kept as two separate lists (not one merged `optionGroups`) because
   /// the real menu data — and the UI — treats "Size" and "Add-ons" as
   /// distinct sections with different copy, not one undifferentiated list.
@@ -58,6 +69,9 @@ class Product extends Equatable {
     required this.basePrice,
     required this.discountPrice,
     required this.isAvailable,
+    required this.categoryName,
+    required this.tags,
+    required this.rating,
     required this.variationGroups,
     required this.extraGroups,
   });
@@ -65,6 +79,8 @@ class Product extends Equatable {
   double get effectivePrice => discountPrice ?? basePrice;
 
   bool get hasDiscount => discountPrice != null && discountPrice! < basePrice;
+
+  bool get isVegetarian => tags.contains('Vegetarian');
 
   @override
   List<Object?> get props => [
@@ -76,6 +92,9 @@ class Product extends Equatable {
         basePrice,
         discountPrice,
         isAvailable,
+        categoryName,
+        tags,
+        rating,
         variationGroups,
         extraGroups,
       ];

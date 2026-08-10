@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,17 +18,31 @@ import '../widgets/menu_item_tile.dart';
 /// `RestaurantCard.onTap` in `home_screen.dart`) so the header renders
 /// instantly without waiting on a refetch; only the menu list depends on
 /// [productsByRestaurantProvider].
-class RestaurantDetailScreen extends ConsumerWidget {
+class RestaurantDetailScreen extends ConsumerStatefulWidget {
   final Restaurant restaurant;
 
   const RestaurantDetailScreen({super.key, required this.restaurant});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final productsAsync = ref.watch(productsByRestaurantProvider(restaurant.id));
+  ConsumerState<RestaurantDetailScreen> createState() => _RestaurantDetailScreenState();
+}
+
+class _RestaurantDetailScreenState extends ConsumerState<RestaurantDetailScreen> {
+  final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final productsAsync = ref.watch(productsByRestaurantProvider(widget.restaurant.id));
 
     return Scaffold(
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverAppBar(
             expandedHeight: 200.h,
@@ -38,7 +53,7 @@ class RestaurantDetailScreen extends ConsumerWidget {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  AppImage(url: restaurant.coverImageUrl, fit: BoxFit.cover, borderRadius: BorderRadius.zero),
+                  AppImage(url: widget.restaurant.coverImageUrl, fit: BoxFit.cover, borderRadius: BorderRadius.zero),
                   // Bottom scrim so the (future) title/foreground controls stay
                   // legible over busy food photography, Zomato-style.
                   DecoratedBox(
@@ -51,7 +66,7 @@ class RestaurantDetailScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  if (!restaurant.isOpen)
+                  if (!widget.restaurant.isOpen)
                     Container(
                       color: Colors.black.withValues(alpha: 0.35),
                       alignment: Alignment.center,
@@ -68,7 +83,7 @@ class RestaurantDetailScreen extends ConsumerWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: _RestaurantMeta(restaurant: restaurant)),
+          SliverToBoxAdapter(child: _RestaurantMeta(restaurant: widget.restaurant)),
           ...productsAsync.when(
             loading: () => [
               SliverList(
@@ -84,7 +99,7 @@ class RestaurantDetailScreen extends ConsumerWidget {
                   height: 240.h,
                   child: ErrorStateView(
                     message: error is Failure ? error.userMessage : 'Something went wrong. Please try again.',
-                    onRetry: () => ref.invalidate(productsByRestaurantProvider(restaurant.id)),
+                    onRetry: () => ref.invalidate(productsByRestaurantProvider(widget.restaurant.id)),
                   ),
                 ),
               ),
@@ -102,7 +117,7 @@ class RestaurantDetailScreen extends ConsumerWidget {
                       ),
                     ),
                   ]
-                : [_MenuSection(products: products)],
+                : [_MenuSection(products: products, scrollController: _scrollController)],
           ),
           SliverToBoxAdapter(child: SizedBox(height: AppSpacing.lg)),
         ],
@@ -112,10 +127,12 @@ class RestaurantDetailScreen extends ConsumerWidget {
 }
 
 /// Zomato-style menu browser: a horizontal scrollable row of the
-/// restaurant's [Product.categoryName]s (first one selected by default),
-/// with only the selected category's items listed below. Selection is
-/// local UI state — it isn't worth a Riverpod provider since nothing
-/// outside this screen needs to observe it.
+/// restaurant's [Product.categoryName]s, with every category's items
+/// listed below in sequence (not filtered). Scrolling the item list drives
+/// which tab is highlighted — a "scrollspy" — and tapping a tab jumps the
+/// list to that category's section. Selection is local UI state — it isn't
+/// worth a Riverpod provider since nothing outside this screen needs to
+/// observe it.
 ///
 /// The category tab row is a pinned [SliverPersistentHeader] (not a plain
 /// box) so it sticks under the collapsed cover-photo app bar while
@@ -123,27 +140,145 @@ class RestaurantDetailScreen extends ConsumerWidget {
 /// [SliverMainAxisGroup] rather than a single [SliverToBoxAdapter].
 class _MenuSection extends StatefulWidget {
   final List<Product> products;
-  const _MenuSection({required this.products});
+  final ScrollController scrollController;
+  const _MenuSection({required this.products, required this.scrollController});
 
   @override
   State<_MenuSection> createState() => _MenuSectionState();
 }
 
 class _MenuSectionState extends State<_MenuSection> {
-  late String _selectedCategory = widget.products.first.categoryName;
+  late String _activeCategory = widget.products.first.categoryName;
+
+  final Map<String, GlobalKey> _sectionKeys = {};
+  final Map<String, GlobalKey> _tabKeys = {};
+  Map<String, double> _sectionOffsets = {};
+  final _tabScrollController = ScrollController();
+
+  /// Suppresses [_onScroll] while a tap-triggered [ScrollController.animateTo]
+  /// is in flight, so the listener doesn't flicker the highlight through
+  /// whichever sections the animated jump scrolls past on its way to the target.
+  bool _isProgrammaticScroll = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.scrollController.addListener(_onScroll);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _recomputeSectionOffsets());
+  }
+
+  @override
+  void didUpdateWidget(_MenuSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.products != oldWidget.products) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _recomputeSectionOffsets());
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.scrollController.removeListener(_onScroll);
+    _tabScrollController.dispose();
+    super.dispose();
+  }
+
+  static List<String> _categoriesOf(List<Product> products) {
+    final seen = <String>{};
+    final ordered = <String>[];
+    for (final product in products) {
+      if (seen.add(product.categoryName)) ordered.add(product.categoryName);
+    }
+    return ordered;
+  }
+
+  GlobalKey _sectionKeyFor(String category) => _sectionKeys.putIfAbsent(category, () => GlobalKey());
+  GlobalKey _tabKeyFor(String category) => _tabKeys.putIfAbsent(category, () => GlobalKey());
+
+  /// Caches each section header's scroll offset via the same primitive
+  /// [Scrollable.ensureVisible] uses under the hood — it accounts for the
+  /// pinned cover-photo app bar and pinned tab row above the content for
+  /// free, so landing a jump just below both needs no manual height math.
+  void _recomputeSectionOffsets() {
+    if (!mounted) return;
+    final offsets = <String, double>{};
+    for (final entry in _sectionKeys.entries) {
+      final box = entry.value.currentContext?.findRenderObject();
+      if (box is! RenderBox || !box.hasSize) continue;
+      // maybeOf (not of) — a box mid-attach/detach during lazy sliver layout
+      // may transiently have no viewport ancestor; `of` would throw for that.
+      final viewport = RenderAbstractViewport.maybeOf(box);
+      if (viewport == null) continue;
+      offsets[entry.key] = viewport.getOffsetToReveal(box, 0.0).offset;
+    }
+    _sectionOffsets = offsets;
+  }
+
+  void _onScroll() {
+    if (_isProgrammaticScroll) return;
+    // Sliver layout is lazy — sections below the fold + cache extent aren't
+    // built/laid out yet on the first frame, so this has to keep re-measuring
+    // as more of them come into range while the user scrolls, not just once.
+    _recomputeSectionOffsets();
+    if (_sectionOffsets.isEmpty) return;
+    final offset = widget.scrollController.offset;
+    final categories = _categoriesOf(widget.products);
+
+    var next = categories.first;
+    for (final category in categories) {
+      final sectionOffset = _sectionOffsets[category];
+      if (sectionOffset != null && sectionOffset <= offset) {
+        next = category;
+      } else {
+        break; // categories are ordered, so offsets are monotonically increasing
+      }
+    }
+
+    if (next == _activeCategory) return;
+    setState(() => _activeCategory = next);
+    _revealTab(next);
+  }
+
+  void _selectCategory(String category) {
+    if (category != _activeCategory) setState(() => _activeCategory = category);
+    _revealTab(category);
+
+    final target = _sectionOffsets[category];
+    if (target == null) return; // offsets not measured yet — negligible startup race
+    final clamped = target.clamp(0.0, widget.scrollController.position.maxScrollExtent);
+
+    _isProgrammaticScroll = true;
+    widget.scrollController
+        .animateTo(clamped, duration: const Duration(milliseconds: 300), curve: Curves.easeOut)
+        .whenComplete(() => _isProgrammaticScroll = false);
+  }
+
+  /// Scoped to [_tabScrollController]'s own viewport only — deliberately not
+  /// [Scrollable.ensureVisible], which walks *every* ancestor Scrollable and
+  /// would also nudge the outer vertical list (the pill row sits inside the
+  /// same CustomScrollView the vertical scrollspy is driven by), fighting the
+  /// user's own scroll and re-triggering [_onScroll] mid-gesture.
+  void _revealTab(String category) {
+    final box = _tabKeys[category]?.currentContext?.findRenderObject();
+    if (box is! RenderBox || !box.hasSize) return;
+    final viewport = RenderAbstractViewport.maybeOf(box);
+    if (viewport == null) return;
+    final target = viewport.getOffsetToReveal(box, 0.5).offset;
+    final clamped = target.clamp(0.0, _tabScrollController.position.maxScrollExtent);
+    _tabScrollController.animateTo(clamped, duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final categories = <String>[];
-    for (final product in widget.products) {
-      if (!categories.contains(product.categoryName)) categories.add(product.categoryName);
-    }
+    final categories = _categoriesOf(widget.products);
     // Guards against a stale selection if the product list changes shape
     // underneath this widget (e.g. a retry after an error) without a category
     // matching what was previously selected.
-    if (!categories.contains(_selectedCategory)) _selectedCategory = categories.first;
+    if (!categories.contains(_activeCategory)) _activeCategory = categories.first;
 
-    final items = widget.products.where((p) => p.categoryName == _selectedCategory).toList();
+    final grouped = <String, List<Product>>{};
+    for (final product in widget.products) {
+      grouped.putIfAbsent(product.categoryName, () => []).add(product);
+    }
 
     return SliverMainAxisGroup(
       slivers: [
@@ -151,22 +286,27 @@ class _MenuSectionState extends State<_MenuSection> {
           pinned: true,
           delegate: _CategoryTabBarDelegate(
             categories: categories,
-            selectedCategory: _selectedCategory,
-            onSelect: (name) => setState(() => _selectedCategory = name),
+            selectedCategory: _activeCategory,
+            onSelect: _selectCategory,
+            tabScrollController: _tabScrollController,
+            tabKeyFor: _tabKeyFor,
           ),
         ),
-        SliverToBoxAdapter(
-          child: SectionHeader(
-            title: _selectedCategory,
-            actionLabel: '${items.length} item${items.length == 1 ? '' : 's'}',
+        for (final category in categories) ...[
+          SliverToBoxAdapter(
+            child: SectionHeader(
+              key: _sectionKeyFor(category),
+              title: category,
+              actionLabel: '${grouped[category]!.length} item${grouped[category]!.length == 1 ? '' : 's'}',
+            ),
           ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => MenuItemTile(product: items[index]),
-            childCount: items.length,
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => MenuItemTile(product: grouped[category]![index]),
+              childCount: grouped[category]!.length,
+            ),
           ),
-        ),
+        ],
       ],
     );
   }
@@ -179,11 +319,15 @@ class _CategoryTabBarDelegate extends SliverPersistentHeaderDelegate {
   final List<String> categories;
   final String selectedCategory;
   final ValueChanged<String> onSelect;
+  final ScrollController tabScrollController;
+  final GlobalKey Function(String category) tabKeyFor;
 
   _CategoryTabBarDelegate({
     required this.categories,
     required this.selectedCategory,
     required this.onSelect,
+    required this.tabScrollController,
+    required this.tabKeyFor,
   });
 
   double get _height => 44.h + AppSpacing.sm * 2;
@@ -206,18 +350,21 @@ class _CategoryTabBarDelegate extends SliverPersistentHeaderDelegate {
         child: Center(
           child: SizedBox(
             height: 44.h,
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
+            child: SingleChildScrollView(
+              controller: tabScrollController,
               scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                final name = categories[index];
-                return _MenuCategoryTab(
-                  label: name,
-                  isSelected: name == selectedCategory,
-                  onTap: () => onSelect(name),
-                );
-              },
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
+              child: Row(
+                children: [
+                  for (final name in categories)
+                    _MenuCategoryTab(
+                      key: tabKeyFor(name),
+                      label: name,
+                      isSelected: name == selectedCategory,
+                      onTap: () => onSelect(name),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
@@ -237,7 +384,7 @@ class _MenuCategoryTab extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const _MenuCategoryTab({required this.label, required this.isSelected, required this.onTap});
+  const _MenuCategoryTab({super.key, required this.label, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

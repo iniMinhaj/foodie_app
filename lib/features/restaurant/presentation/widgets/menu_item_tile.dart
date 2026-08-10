@@ -32,29 +32,36 @@ class MenuItemTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                AppImage(
-                  url: product.imageUrl,
-                  width: 88.w,
-                  height: 88.w,
-                  borderRadius: BorderRadius.circular(AppRadius.sm),
-                ),
-                if (product.tags.contains('Bestseller'))
-                  Positioned(
-                    top: 4.h,
-                    left: 4.w,
-                    child: const _BestsellerBadge(),
+            // Fixed height reserves room for the ADD button's downward
+            // bleed below the image so it stays cleanly inset instead of
+            // overflowing into this tile's own bottom padding/margin.
+            SizedBox(
+              width: 88.w,
+              height: 88.w + 16.h,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  AppImage(
+                    url: product.imageUrl,
+                    width: 88.w,
+                    height: 88.w,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                   ),
-                if (product.isAvailable)
-                  Positioned(
-                    bottom: -14.h,
-                    left: 8.w,
-                    right: 8.w,
-                    child: _AddToCartControl(product: product),
-                  ),
-              ],
+                  if (product.tags.contains('Bestseller'))
+                    Positioned(
+                      top: 4.h,
+                      left: 4.w,
+                      child: const _BestsellerBadge(),
+                    ),
+                  if (product.isAvailable)
+                    Positioned(
+                      bottom: 0,
+                      left: 12.w,
+                      right: 12.w,
+                      child: _AddToCartControl(product: product),
+                    ),
+                ],
+              ),
             ),
             SizedBox(width: AppSpacing.sm),
             Expanded(
@@ -256,7 +263,7 @@ class _AddToCartControl extends StatelessWidget {
           return GestureDetector(
             onTap: () => _addOne(context),
             child: Container(
-              height: 30.h,
+              height: 28.h,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: AppColors.surface,
@@ -268,14 +275,14 @@ class _AddToCartControl extends StatelessWidget {
               ),
               child: Text(
                 'ADD',
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: 0.5),
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: 0.5),
               ),
             ),
           );
         }
 
         return Container(
-          height: 30.h,
+          height: 28.h,
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(AppRadius.sm),
@@ -287,7 +294,7 @@ class _AddToCartControl extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _StepIcon(icon: Icons.remove_rounded, onTap: _removeOne),
-              Text('$quantity', style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w800, color: Colors.white)),
+              Text('$quantity', style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w800, color: Colors.white)),
               _StepIcon(icon: Icons.add_rounded, onTap: () => _addOne(context)),
             ],
           ),
@@ -307,7 +314,7 @@ class _StepIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(width: 22.w, height: 30.h, child: Icon(icon, size: 14, color: Colors.white)),
+      child: SizedBox(width: 20.w, height: 28.h, child: Icon(icon, size: 14, color: Colors.white)),
     );
   }
 }

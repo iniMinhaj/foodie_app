@@ -69,34 +69,40 @@ class RestaurantDetailScreen extends ConsumerWidget {
             ),
           ),
           SliverToBoxAdapter(child: _RestaurantMeta(restaurant: restaurant)),
-          productsAsync.when(
-            loading: () => SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => const ProductCardSkeleton(),
-                childCount: 3,
-              ),
-            ),
-            error: (error, stackTrace) => SliverToBoxAdapter(
-              child: SizedBox(
-                height: 240.h,
-                child: ErrorStateView(
-                  message: error is Failure ? error.userMessage : 'Something went wrong. Please try again.',
-                  onRetry: () => ref.invalidate(productsByRestaurantProvider(restaurant.id)),
+          ...productsAsync.when(
+            loading: () => [
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => const ProductCardSkeleton(),
+                  childCount: 3,
                 ),
               ),
-            ),
+            ],
+            error: (error, stackTrace) => [
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 240.h,
+                  child: ErrorStateView(
+                    message: error is Failure ? error.userMessage : 'Something went wrong. Please try again.',
+                    onRetry: () => ref.invalidate(productsByRestaurantProvider(restaurant.id)),
+                  ),
+                ),
+              ),
+            ],
             data: (products) => products.isEmpty
-                ? SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 200.h,
-                      child: const EmptyStateView(
-                        icon: Icons.restaurant_menu_rounded,
-                        title: 'No menu items yet',
-                        message: 'Check back later for this restaurant\'s menu.',
+                ? [
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 200.h,
+                        child: const EmptyStateView(
+                          icon: Icons.restaurant_menu_rounded,
+                          title: 'No menu items yet',
+                          message: 'Check back later for this restaurant\'s menu.',
+                        ),
                       ),
                     ),
-                  )
-                : SliverToBoxAdapter(child: _CategoryMenu(products: products)),
+                  ]
+                : [_MenuSection(products: products)],
           ),
           SliverToBoxAdapter(child: SizedBox(height: AppSpacing.lg)),
         ],
@@ -110,15 +116,20 @@ class RestaurantDetailScreen extends ConsumerWidget {
 /// with only the selected category's items listed below. Selection is
 /// local UI state — it isn't worth a Riverpod provider since nothing
 /// outside this screen needs to observe it.
-class _CategoryMenu extends StatefulWidget {
+///
+/// The category tab row is a pinned [SliverPersistentHeader] (not a plain
+/// box) so it sticks under the collapsed cover-photo app bar while
+/// scrolling, foodpanda/Zomato-style — this is why the whole section is a
+/// [SliverMainAxisGroup] rather than a single [SliverToBoxAdapter].
+class _MenuSection extends StatefulWidget {
   final List<Product> products;
-  const _CategoryMenu({required this.products});
+  const _MenuSection({required this.products});
 
   @override
-  State<_CategoryMenu> createState() => _CategoryMenuState();
+  State<_MenuSection> createState() => _MenuSectionState();
 }
 
-class _CategoryMenuState extends State<_CategoryMenu> {
+class _MenuSectionState extends State<_MenuSection> {
   late String _selectedCategory = widget.products.first.categoryName;
 
   @override
@@ -134,32 +145,90 @@ class _CategoryMenuState extends State<_CategoryMenu> {
 
     final items = widget.products.where((p) => p.categoryName == _selectedCategory).toList();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 44.h,
-          child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              final name = categories[index];
-              return _MenuCategoryTab(
-                label: name,
-                isSelected: name == _selectedCategory,
-                onTap: () => setState(() => _selectedCategory = name),
-              );
-            },
+    return SliverMainAxisGroup(
+      slivers: [
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: _CategoryTabBarDelegate(
+            categories: categories,
+            selectedCategory: _selectedCategory,
+            onSelect: (name) => setState(() => _selectedCategory = name),
           ),
         ),
-        SectionHeader(
-          title: _selectedCategory,
-          actionLabel: '${items.length} item${items.length == 1 ? '' : 's'}',
+        SliverToBoxAdapter(
+          child: SectionHeader(
+            title: _selectedCategory,
+            actionLabel: '${items.length} item${items.length == 1 ? '' : 's'}',
+          ),
         ),
-        for (final product in items) MenuItemTile(product: product),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => MenuItemTile(product: items[index]),
+            childCount: items.length,
+          ),
+        ),
       ],
     );
+  }
+}
+
+/// Pinned header wrapping the horizontal category-pill row so it sticks
+/// under the app bar once scrolled to, instead of scrolling away with the
+/// rest of the menu content.
+class _CategoryTabBarDelegate extends SliverPersistentHeaderDelegate {
+  final List<String> categories;
+  final String selectedCategory;
+  final ValueChanged<String> onSelect;
+
+  _CategoryTabBarDelegate({
+    required this.categories,
+    required this.selectedCategory,
+    required this.onSelect,
+  });
+
+  double get _height => 44.h + AppSpacing.sm * 2;
+
+  @override
+  double get minExtent => _height;
+
+  @override
+  double get maxExtent => _height;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        border: Border(bottom: BorderSide(color: AppColors.border)),
+      ),
+      child: SizedBox(
+        height: _height,
+        child: Center(
+          child: SizedBox(
+            height: 44.h,
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final name = categories[index];
+                return _MenuCategoryTab(
+                  label: name,
+                  isSelected: name == selectedCategory,
+                  onTap: () => onSelect(name),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(covariant _CategoryTabBarDelegate oldDelegate) {
+    return categories != oldDelegate.categories ||
+        selectedCategory != oldDelegate.selectedCategory;
   }
 }
 

@@ -4,8 +4,8 @@
   "meta": {
     "current_page": 1,
     "per_page": 10,
-    "total_items": 38,
-    "total_pages": 4,
+    "total_items": 125,
+    "total_pages": 13,
     "has_next_page": true
   },
   "data": [
@@ -1869,6 +1869,2749 @@
       "tags": [
         "Vegetarian"
       ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1039",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Biryani Specials",
+      "name": "Chicken Tikka Biryani",
+      "slug": "chicken-tikka-biryani",
+      "description": "Smoky char-grilled chicken tikka layered with saffron-infused basmati rice and fried onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/biryani,tikka?lock=11039"
+      ],
+      "base_price": 7.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 129,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 690,
+        "protein_g": 31,
+        "carbs_g": 76,
+        "fat_g": 22
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1040",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_004",
+      "menu_category": "Starters",
+      "name": "Paneer Tikka",
+      "slug": "paneer-tikka",
+      "description": "Cubes of cottage cheese marinated in yogurt and spices, char-grilled with bell peppers and onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/paneer,tikka?lock=11040"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 102,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 18,
+        "carbs_g": 12,
+        "fat_g": 24
+      },
+      "tags": [
+        "Vegetarian",
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1041",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Curries",
+      "name": "Butter Chicken",
+      "slug": "butter-chicken",
+      "description": "Tandoor-roasted chicken simmered in a velvety tomato and butter gravy with a touch of cream.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/butter-chicken,curry?lock=11041"
+      ],
+      "base_price": 7.5,
+      "discount_price": 6.75,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.8,
+      "total_reviews": 356,
+      "preparation_time_minutes": 22,
+      "nutrition": {
+        "calories": 620,
+        "protein_g": 30,
+        "carbs_g": 20,
+        "fat_g": 42
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [
+        {
+          "id": "vg_1041_portion",
+          "name": "Portion",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            {
+              "id": "opt_portion_reg",
+              "label": "Regular",
+              "price_delta": 0.0,
+              "is_default": true
+            },
+            {
+              "id": "opt_portion_large",
+              "label": "Large",
+              "price_delta": 3.0
+            }
+          ]
+        }
+      ],
+      "extra_groups": [
+        {
+          "id": "eg_1041_addons",
+          "name": "Add-ons",
+          "selection_type": "multiple",
+          "is_required": false,
+          "options": [
+            {
+              "id": "opt_extra_naan",
+              "label": "Butter Naan",
+              "price_delta": 1.25
+            },
+            {
+              "id": "opt_extra_rice",
+              "label": "Steamed Rice",
+              "price_delta": 1.0
+            }
+          ],
+          "max_selectable": 2
+        }
+      ]
+    },
+    {
+      "id": "prod_1042",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Sweet Lassi",
+      "slug": "sweet-lassi",
+      "description": "Classic chilled yogurt drink lightly sweetened and topped with a pinch of cardamom.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/lassi,yogurt-drink?lock=11042"
+      ],
+      "base_price": 2.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 118,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 190,
+        "protein_g": 5,
+        "carbs_g": 32,
+        "fat_g": 4
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1043",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Burgers",
+      "name": "Mushroom Swiss Burger",
+      "slug": "mushroom-swiss-burger",
+      "description": "Beef patty topped with sauteed mushrooms, melted Swiss cheese and garlic aioli.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/burger,mushroom?lock=12043"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 134,
+      "preparation_time_minutes": 13,
+      "nutrition": {
+        "calories": 610,
+        "protein_g": 28,
+        "carbs_g": 40,
+        "fat_g": 34
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1044",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_008",
+      "menu_category": "Sides",
+      "name": "Buffalo Chicken Wings",
+      "slug": "buffalo-chicken-wings",
+      "description": "Crispy fried wings tossed in tangy buffalo sauce, served with a side of ranch dip.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chicken-wings,buffalo?lock=12044"
+      ],
+      "base_price": 4.99,
+      "discount_price": 4.25,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.6,
+      "total_reviews": 197,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 520,
+        "protein_g": 32,
+        "carbs_g": 12,
+        "fat_g": 36
+      },
+      "tags": [
+        "Spicy",
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1045",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_008",
+      "menu_category": "Sides",
+      "name": "Sweet Potato Fries",
+      "slug": "sweet-potato-fries",
+      "description": "Crispy-edged sweet potato fries lightly salted, served with maple-chipotle dip.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/sweet-potato-fries?lock=12045"
+      ],
+      "base_price": 3.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 88,
+      "preparation_time_minutes": 9,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 4,
+        "carbs_g": 48,
+        "fat_g": 15
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1046",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Strawberry Milkshake",
+      "slug": "strawberry-milkshake",
+      "description": "Thick and creamy strawberry milkshake blended with real fruit and topped with whipped cream.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/milkshake,strawberry?lock=12046"
+      ],
+      "base_price": 3.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 121,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 410,
+        "protein_g": 7,
+        "carbs_g": 56,
+        "fat_g": 15
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1047",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Classic Pizzas",
+      "name": "BBQ Chicken Pizza",
+      "slug": "bbq-chicken-pizza",
+      "description": "Smoky BBQ sauce base topped with grilled chicken, red onions and mozzarella.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,bbq-chicken?lock=13047"
+      ],
+      "base_price": 10.75,
+      "discount_price": 9.5,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.6,
+      "total_reviews": 210,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 840,
+        "protein_g": 36,
+        "carbs_g": 80,
+        "fat_g": 38
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [
+        {
+          "id": "vg_1047_size",
+          "name": "Size",
+          "selection_type": "single",
+          "is_required": true,
+          "options": [
+            {
+              "id": "opt_size_small",
+              "label": "8-inch (Small)",
+              "price_delta": 0.0,
+              "is_default": true
+            },
+            {
+              "id": "opt_size_medium",
+              "label": "12-inch (Medium)",
+              "price_delta": 4.0
+            },
+            {
+              "id": "opt_size_large2",
+              "label": "16-inch (Large)",
+              "price_delta": 8.0
+            }
+          ]
+        }
+      ],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1048",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Starters",
+      "name": "Garlic Bread",
+      "slug": "garlic-bread",
+      "description": "Toasted baguette slices brushed with garlic butter and herbs, baked until golden.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/garlic-bread?lock=13048"
+      ],
+      "base_price": 3.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 143,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 280,
+        "protein_g": 6,
+        "carbs_g": 36,
+        "fat_g": 12
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1049",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Pasta",
+      "name": "Fettuccine Alfredo",
+      "slug": "fettuccine-alfredo",
+      "description": "Fettuccine tossed in a rich, creamy parmesan sauce with a touch of cracked black pepper.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pasta,alfredo?lock=13049"
+      ],
+      "base_price": 8.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 128,
+      "preparation_time_minutes": 17,
+      "nutrition": {
+        "calories": 740,
+        "protein_g": 22,
+        "carbs_g": 68,
+        "fat_g": 40
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1050",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_005",
+      "menu_category": "Desserts",
+      "name": "Panna Cotta",
+      "slug": "panna-cotta",
+      "description": "Silky vanilla-bean panna cotta topped with a fresh mixed berry compote.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/panna-cotta,dessert?lock=13050"
+      ],
+      "base_price": 4.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 96,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 320,
+        "protein_g": 5,
+        "carbs_g": 30,
+        "fat_g": 20
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1051",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Acai Bowl",
+      "slug": "acai-bowl",
+      "description": "Blended acai topped with granola, banana, fresh berries and a drizzle of honey.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/acai-bowl?lock=14051"
+      ],
+      "base_price": 5.75,
+      "discount_price": 5.0,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 152,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 8,
+        "carbs_g": 62,
+        "fat_g": 12
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian",
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1052",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Salad Bowls",
+      "name": "Mediterranean Hummus Bowl",
+      "slug": "mediterranean-hummus-bowl",
+      "description": "Creamy hummus, falafel, cucumber, tomato and pickled onions over mixed greens.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/hummus-bowl,mediterranean?lock=14052"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 79,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 430,
+        "protein_g": 15,
+        "carbs_g": 48,
+        "fat_g": 20
+      },
+      "tags": [
+        "Vegetarian",
+        "Healthy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1053",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Smoothies & Juices",
+      "name": "Berry Protein Smoothie",
+      "slug": "berry-protein-smoothie",
+      "description": "Mixed berries blended with banana, whey protein and almond milk.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/berry-smoothie,protein?lock=14053"
+      ],
+      "base_price": 4.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 91,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 240,
+        "protein_g": 20,
+        "carbs_g": 32,
+        "fat_g": 4
+      },
+      "tags": [
+        "Healthy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1054",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Wraps",
+      "name": "Roasted Veggie Wrap",
+      "slug": "roasted-veggie-wrap",
+      "description": "Whole-wheat wrap filled with roasted zucchini, peppers, hummus and baby spinach.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/veggie-wrap?lock=14054"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 58,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 360,
+        "protein_g": 11,
+        "carbs_g": 46,
+        "fat_g": 14
+      },
+      "tags": [
+        "Vegetarian",
+        "Healthy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1055",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "Sweet & Sour Chicken",
+      "slug": "sweet-and-sour-chicken",
+      "description": "Crispy battered chicken tossed in a tangy sweet and sour sauce with peppers and pineapple.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/sweet-sour-chicken?lock=15055"
+      ],
+      "base_price": 6.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.5,
+      "total_reviews": 174,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 540,
+        "protein_g": 26,
+        "carbs_g": 58,
+        "fat_g": 20
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1056",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Noodles & Rice",
+      "name": "Vegetable Chow Mein",
+      "slug": "vegetable-chow-mein",
+      "description": "Stir-fried noodles with cabbage, carrots, bean sprouts and scallions in a light soy glaze.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chow-mein,vegetable?lock=15056"
+      ],
+      "base_price": 4.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 82,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 460,
+        "protein_g": 12,
+        "carbs_g": 72,
+        "fat_g": 12
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1057",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Dim Sum",
+      "name": "Spring Onion Pancake",
+      "slug": "spring-onion-pancake",
+      "description": "Flaky pan-fried scallion pancake, crisp on the outside and soft within, served with soy dip.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/scallion-pancake?lock=15057"
+      ],
+      "base_price": 3.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 67,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 300,
+        "protein_g": 6,
+        "carbs_g": 38,
+        "fat_g": 14
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1058",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Soups",
+      "name": "Wonton Soup",
+      "slug": "wonton-soup",
+      "description": "Delicate pork and shrimp wontons in a light, savory broth with scallions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/wonton-soup?lock=15058"
+      ],
+      "base_price": 3.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 91,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 220,
+        "protein_g": 12,
+        "carbs_g": 20,
+        "fat_g": 8
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1059",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Dal Makhani",
+      "slug": "dal-makhani",
+      "description": "Slow-simmered black lentils and kidney beans in a buttery, smoky tomato gravy.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/dal,lentil-curry?lock=1060"
+      ],
+      "base_price": 4.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 187,
+      "preparation_time_minutes": 20,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 14,
+        "carbs_g": 40,
+        "fat_g": 18
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1060",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Chicken Korma",
+      "slug": "chicken-korma",
+      "description": "Tender chicken in a mild, creamy cashew and yogurt gravy with warm spices.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chicken-korma?lock=1061"
+      ],
+      "base_price": 6.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 210,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 560,
+        "protein_g": 28,
+        "carbs_g": 22,
+        "fat_g": 34
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1061",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Palak Paneer",
+      "slug": "palak-paneer",
+      "description": "Cottage cheese cubes simmered in a silky spiced spinach puree.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/palak-paneer,spinach-curry?lock=1062"
+      ],
+      "base_price": 5.5,
+      "discount_price": 4.95,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 156,
+      "preparation_time_minutes": 20,
+      "nutrition": {
+        "calories": 420,
+        "protein_g": 16,
+        "carbs_g": 18,
+        "fat_g": 30
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1062",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Tandoori Chicken (Half)",
+      "slug": "tandoori-chicken-half",
+      "description": "Yogurt and spice marinated chicken, char-roasted in the tandoor.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/tandoori-chicken?lock=1063"
+      ],
+      "base_price": 6.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 244,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 410,
+        "protein_g": 42,
+        "carbs_g": 6,
+        "fat_g": 20
+      },
+      "tags": [
+        "Bestseller",
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1063",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Aloo Gobi",
+      "slug": "aloo-gobi",
+      "description": "Potatoes and cauliflower dry-tossed with turmeric, cumin and ginger.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/aloo-gobi,potato-curry?lock=1064"
+      ],
+      "base_price": 3.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 98,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 300,
+        "protein_g": 7,
+        "carbs_g": 38,
+        "fat_g": 12
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1064",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Recommended",
+      "name": "Egg Curry",
+      "slug": "egg-curry",
+      "description": "Boiled eggs simmered in a spiced onion-tomato masala gravy.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/egg-curry?lock=1065"
+      ],
+      "base_price": 4.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 121,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 16,
+        "carbs_g": 16,
+        "fat_g": 22
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1065",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Biryani Specials",
+      "name": "Vegetable Biryani",
+      "slug": "vegetable-biryani",
+      "description": "Basmati rice layered with mixed vegetables, saffron and fried onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/vegetable-biryani?lock=1066"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 132,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 560,
+        "protein_g": 12,
+        "carbs_g": 92,
+        "fat_g": 14
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1066",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Biryani Specials",
+      "name": "Prawn Biryani",
+      "slug": "prawn-biryani",
+      "description": "Fragrant basmati rice dum-cooked with spiced prawns and caramelized onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/prawn-biryani,shrimp-rice?lock=1067"
+      ],
+      "base_price": 8.5,
+      "discount_price": 7.75,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 176,
+      "preparation_time_minutes": 30,
+      "nutrition": {
+        "calories": 620,
+        "protein_g": 26,
+        "carbs_g": 78,
+        "fat_g": 18
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1067",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_004",
+      "menu_category": "Starters",
+      "name": "Onion Bhaji",
+      "slug": "onion-bhaji",
+      "description": "Crispy chickpea-batter fritters loaded with spiced onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/onion-bhaji,fritters?lock=1068"
+      ],
+      "base_price": 3.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 87,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 260,
+        "protein_g": 5,
+        "carbs_g": 30,
+        "fat_g": 12
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1068",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_004",
+      "menu_category": "Starters",
+      "name": "Fish Pakora",
+      "slug": "fish-pakora",
+      "description": "Batter-fried fish bites seasoned with carom seeds and chili.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/fish-pakora?lock=1069"
+      ],
+      "base_price": 4.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 94,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 310,
+        "protein_g": 20,
+        "carbs_g": 18,
+        "fat_g": 16
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1069",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Masala Chai",
+      "slug": "masala-chai",
+      "description": "Strong black tea simmered with milk, ginger and whole spices.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/masala-chai,spiced-tea?lock=1070"
+      ],
+      "base_price": 1.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 143,
+      "preparation_time_minutes": 6,
+      "nutrition": {
+        "calories": 110,
+        "protein_g": 3,
+        "carbs_g": 16,
+        "fat_g": 3
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1070",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Rose Falooda",
+      "slug": "rose-falooda",
+      "description": "Layered rose milk dessert drink with vermicelli, basil seeds and jelly.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/falooda,rose-drink?lock=1071"
+      ],
+      "base_price": 3.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 68,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 260,
+        "protein_g": 5,
+        "carbs_g": 48,
+        "fat_g": 6
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1071",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Curries",
+      "name": "Chicken Rezala",
+      "slug": "chicken-rezala",
+      "description": "Chicken braised in a mild white gravy with yogurt and green chili.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chicken-rezala?lock=1072"
+      ],
+      "base_price": 6.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 108,
+      "preparation_time_minutes": 28,
+      "nutrition": {
+        "calories": 520,
+        "protein_g": 30,
+        "carbs_g": 14,
+        "fat_g": 34
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1072",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Curries",
+      "name": "Fish Curry",
+      "slug": "fish-curry",
+      "description": "Freshwater fish simmered in a tangy mustard and turmeric gravy.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/fish-curry,bengali?lock=1073"
+      ],
+      "base_price": 6.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 92,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 26,
+        "carbs_g": 12,
+        "fat_g": 22
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1073",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Curries",
+      "name": "Chana Masala",
+      "slug": "chana-masala",
+      "description": "Chickpeas simmered in a tangy tomato-onion masala with garam spices.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chana-masala,chickpea-curry?lock=1074"
+      ],
+      "base_price": 3.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 116,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 12,
+        "carbs_g": 46,
+        "fat_g": 10
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1074",
+      "restaurant_id": "rest_001",
+      "category_id": "cat_003",
+      "menu_category": "Curries",
+      "name": "Lamb Rogan Josh",
+      "slug": "lamb-rogan-josh",
+      "description": "Slow-braised lamb in a rich Kashmiri red chili and yogurt gravy.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/rogan-josh,lamb-curry?lock=1075"
+      ],
+      "base_price": 8.75,
+      "discount_price": 7.99,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 164,
+      "preparation_time_minutes": 35,
+      "nutrition": {
+        "calories": 610,
+        "protein_g": 32,
+        "carbs_g": 16,
+        "fat_g": 40
+      },
+      "tags": [
+        "Bestseller",
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1075",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Double Cheeseburger",
+      "slug": "double-cheeseburger",
+      "description": "Two beef patties, double cheddar, pickles and house sauce on a toasted bun.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/double-cheeseburger?lock=1076"
+      ],
+      "base_price": 6.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.6,
+      "total_reviews": 268,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 720,
+        "protein_g": 38,
+        "carbs_g": 44,
+        "fat_g": 42
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1076",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Jalapeno Popper Burger",
+      "slug": "jalapeno-popper-burger",
+      "description": "Beef patty topped with cream cheese, jalapenos and crispy onions.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/burger,jalapeno?lock=1077"
+      ],
+      "base_price": 5.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 154,
+      "preparation_time_minutes": 13,
+      "nutrition": {
+        "calories": 640,
+        "protein_g": 30,
+        "carbs_g": 42,
+        "fat_g": 36
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1077",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Fried Chicken Sandwich",
+      "slug": "fried-chicken-sandwich",
+      "description": "Buttermilk-fried chicken thigh with pickles and spicy mayo on a bun.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/fried-chicken-sandwich?lock=1078"
+      ],
+      "base_price": 5.5,
+      "discount_price": 4.99,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 201,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 590,
+        "protein_g": 28,
+        "carbs_g": 46,
+        "fat_g": 26
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1078",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Bacon Ranch Burger",
+      "slug": "bacon-ranch-burger",
+      "description": "Beef patty with crispy bacon, cheddar and cool ranch sauce.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/burger,bacon-ranch?lock=1079"
+      ],
+      "base_price": 5.99,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 178,
+      "preparation_time_minutes": 13,
+      "nutrition": {
+        "calories": 660,
+        "protein_g": 32,
+        "carbs_g": 40,
+        "fat_g": 38
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1079",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Classic Cheeseburger",
+      "slug": "classic-cheeseburger",
+      "description": "The original: beef patty, American cheese, lettuce, tomato and onion.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/cheeseburger,classic?lock=1080"
+      ],
+      "base_price": 4.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 312,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 520,
+        "protein_g": 24,
+        "carbs_g": 40,
+        "fat_g": 26
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1080",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Bestsellers",
+      "name": "Smokehouse Burger",
+      "slug": "smokehouse-burger",
+      "description": "Beef patty with smoked BBQ sauce, crispy onion straws and cheddar.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/burger,smokehouse?lock=1081"
+      ],
+      "base_price": 6.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 143,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 700,
+        "protein_g": 33,
+        "carbs_g": 44,
+        "fat_g": 40
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1081",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Burgers",
+      "name": "Turkey Club Burger",
+      "slug": "turkey-club-burger",
+      "description": "Grilled turkey patty with beef bacon, lettuce and tomato on wheat bun.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/turkey-burger,club?lock=1082"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 76,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 480,
+        "protein_g": 26,
+        "carbs_g": 38,
+        "fat_g": 20
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1082",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_002",
+      "menu_category": "Burgers",
+      "name": "Pulled Pork Burger",
+      "slug": "pulled-pork-burger",
+      "description": "Slow-cooked pulled pork with tangy slaw on a toasted bun.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pulled-pork-burger?lock=1083"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 99,
+      "preparation_time_minutes": 13,
+      "nutrition": {
+        "calories": 590,
+        "protein_g": 27,
+        "carbs_g": 42,
+        "fat_g": 24
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1083",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_008",
+      "menu_category": "Sides",
+      "name": "Mozzarella Sticks",
+      "slug": "mozzarella-sticks",
+      "description": "Golden fried mozzarella sticks served with marinara dip.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/mozzarella-sticks?lock=1084"
+      ],
+      "base_price": 3.99,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 132,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 400,
+        "protein_g": 16,
+        "carbs_g": 34,
+        "fat_g": 20
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1084",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Vanilla Milkshake",
+      "slug": "vanilla-milkshake",
+      "description": "Classic thick vanilla milkshake topped with whipped cream.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/milkshake,vanilla?lock=1085"
+      ],
+      "base_price": 3.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 88,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 410,
+        "protein_g": 7,
+        "carbs_g": 54,
+        "fat_g": 15
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1085",
+      "restaurant_id": "rest_002",
+      "category_id": "cat_006",
+      "menu_category": "Beverages",
+      "name": "Iced Lemonade",
+      "slug": "iced-lemonade",
+      "description": "Freshly squeezed lemonade served over ice, lightly sweetened.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/lemonade,iced-drink?lock=1086"
+      ],
+      "base_price": 1.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 54,
+      "preparation_time_minutes": 2,
+      "nutrition": {
+        "calories": 120,
+        "protein_g": 0,
+        "carbs_g": 32,
+        "fat_g": 0
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1086",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Prosciutto Arugula Pizza",
+      "slug": "prosciutto-arugula-pizza",
+      "description": "Thin crust pizza topped with prosciutto, arugula and shaved parmesan.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,prosciutto?lock=1087"
+      ],
+      "base_price": 11.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 187,
+      "preparation_time_minutes": 24,
+      "nutrition": {
+        "calories": 800,
+        "protein_g": 34,
+        "carbs_g": 74,
+        "fat_g": 38
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1087",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Diavola Pizza",
+      "slug": "diavola-pizza",
+      "description": "Spicy salami, chili flakes and mozzarella on a wood-fired crust.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,diavola-spicy?lock=1088"
+      ],
+      "base_price": 10.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 165,
+      "preparation_time_minutes": 24,
+      "nutrition": {
+        "calories": 830,
+        "protein_g": 32,
+        "carbs_g": 78,
+        "fat_g": 40
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1088",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Lasagna alla Bolognese",
+      "slug": "lasagna-alla-bolognese",
+      "description": "Layers of pasta, slow-cooked beef ragu, bechamel and parmesan.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/lasagna,bolognese?lock=1089"
+      ],
+      "base_price": 9.5,
+      "discount_price": 8.5,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.8,
+      "total_reviews": 213,
+      "preparation_time_minutes": 30,
+      "nutrition": {
+        "calories": 780,
+        "protein_g": 36,
+        "carbs_g": 62,
+        "fat_g": 42
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1089",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Risotto ai Funghi",
+      "slug": "risotto-ai-funghi",
+      "description": "Creamy arborio rice risotto with wild mushrooms and parmesan.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/risotto,mushroom?lock=1090"
+      ],
+      "base_price": 9.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 118,
+      "preparation_time_minutes": 26,
+      "nutrition": {
+        "calories": 620,
+        "protein_g": 16,
+        "carbs_g": 74,
+        "fat_g": 24
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1090",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Calzone Napoletano",
+      "slug": "calzone-napoletano",
+      "description": "Folded pizza dough stuffed with ricotta, mozzarella and salami.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/calzone?lock=1091"
+      ],
+      "base_price": 8.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 104,
+      "preparation_time_minutes": 22,
+      "nutrition": {
+        "calories": 760,
+        "protein_g": 30,
+        "carbs_g": 70,
+        "fat_g": 36
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1091",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Chef's Recommended",
+      "name": "Quattro Stagioni Pizza",
+      "slug": "quattro-stagioni-pizza",
+      "description": "Four-seasons pizza with artichokes, mushrooms, ham and olives.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,quattro-stagioni?lock=1092"
+      ],
+      "base_price": 10.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 142,
+      "preparation_time_minutes": 25,
+      "nutrition": {
+        "calories": 810,
+        "protein_g": 32,
+        "carbs_g": 76,
+        "fat_g": 36
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1092",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Classic Pizzas",
+      "name": "Hawaiian Pizza",
+      "slug": "hawaiian-pizza",
+      "description": "Ham and pineapple on a classic tomato and mozzarella base.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,hawaiian?lock=1093"
+      ],
+      "base_price": 9.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 156,
+      "preparation_time_minutes": 24,
+      "nutrition": {
+        "calories": 780,
+        "protein_g": 30,
+        "carbs_g": 82,
+        "fat_g": 30
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1093",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Classic Pizzas",
+      "name": "Veggie Supreme Pizza",
+      "slug": "veggie-supreme-pizza",
+      "description": "Bell peppers, mushrooms, onions, olives and mozzarella.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/pizza,vegetable?lock=1094"
+      ],
+      "base_price": 9.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 108,
+      "preparation_time_minutes": 24,
+      "nutrition": {
+        "calories": 720,
+        "protein_g": 26,
+        "carbs_g": 84,
+        "fat_g": 28
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1094",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Starters",
+      "name": "Bruschetta",
+      "slug": "bruschetta",
+      "description": "Toasted baguette slices topped with tomato, basil and garlic.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/bruschetta?lock=1095"
+      ],
+      "base_price": 4.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 121,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 260,
+        "protein_g": 6,
+        "carbs_g": 34,
+        "fat_g": 10
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1095",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Starters",
+      "name": "Caprese Salad",
+      "slug": "caprese-salad",
+      "description": "Fresh mozzarella, tomato and basil drizzled with balsamic glaze.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/caprese-salad?lock=1096"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 98,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 320,
+        "protein_g": 14,
+        "carbs_g": 12,
+        "fat_g": 24
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1096",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Starters",
+      "name": "Fried Calamari",
+      "slug": "fried-calamari",
+      "description": "Crispy fried squid rings served with lemon and marinara sauce.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/fried-calamari,squid?lock=1097"
+      ],
+      "base_price": 6.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 134,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 420,
+        "protein_g": 22,
+        "carbs_g": 30,
+        "fat_g": 22
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1097",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Starters",
+      "name": "Antipasto Platter",
+      "slug": "antipasto-platter",
+      "description": "Cured meats, olives, cheeses and marinated vegetables to share.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/antipasto,platter?lock=1098"
+      ],
+      "base_price": 8.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 87,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 540,
+        "protein_g": 28,
+        "carbs_g": 20,
+        "fat_g": 40
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1098",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Pasta",
+      "name": "Lasagna",
+      "slug": "lasagna",
+      "description": "Classic baked lasagna with beef ragu, mozzarella and bechamel.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/lasagna,baked?lock=1099"
+      ],
+      "base_price": 9.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 176,
+      "preparation_time_minutes": 28,
+      "nutrition": {
+        "calories": 820,
+        "protein_g": 38,
+        "carbs_g": 64,
+        "fat_g": 44
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1099",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_001",
+      "menu_category": "Pasta",
+      "name": "Ravioli al Pomodoro",
+      "slug": "ravioli-al-pomodoro",
+      "description": "House-made ravioli stuffed with ricotta in a fresh tomato sauce.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/ravioli,tomato-sauce?lock=1100"
+      ],
+      "base_price": 8.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 102,
+      "preparation_time_minutes": 20,
+      "nutrition": {
+        "calories": 650,
+        "protein_g": 22,
+        "carbs_g": 78,
+        "fat_g": 22
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1100",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_005",
+      "menu_category": "Desserts",
+      "name": "Cannoli",
+      "slug": "cannoli",
+      "description": "Crisp pastry shells filled with sweet ricotta cream and chocolate chips.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/cannoli,dessert?lock=1101"
+      ],
+      "base_price": 3.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 141,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 6,
+        "carbs_g": 36,
+        "fat_g": 18
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1101",
+      "restaurant_id": "rest_003",
+      "category_id": "cat_005",
+      "menu_category": "Desserts",
+      "name": "Affogato",
+      "slug": "affogato",
+      "description": "A scoop of vanilla gelato drowned in a shot of hot espresso.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/affogato,gelato?lock=1102"
+      ],
+      "base_price": 3.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 76,
+      "preparation_time_minutes": 3,
+      "nutrition": {
+        "calories": 210,
+        "protein_g": 4,
+        "carbs_g": 22,
+        "fat_g": 10
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1102",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Buddha Bowl",
+      "slug": "buddha-bowl",
+      "description": "Roasted sweet potato, chickpeas, quinoa and greens with tahini drizzle.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/buddha-bowl,healthy-bowl?lock=1103"
+      ],
+      "base_price": 6.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 167,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 470,
+        "protein_g": 16,
+        "carbs_g": 60,
+        "fat_g": 18
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1103",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Poke Bowl",
+      "slug": "poke-bowl",
+      "description": "Marinated ahi tuna over rice with edamame, avocado and seaweed salad.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/poke-bowl,tuna?lock=1104"
+      ],
+      "base_price": 7.25,
+      "discount_price": 6.5,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.7,
+      "total_reviews": 189,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 460,
+        "protein_g": 28,
+        "carbs_g": 48,
+        "fat_g": 16
+      },
+      "tags": [
+        "Healthy",
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1104",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Falafel Bowl",
+      "slug": "falafel-bowl",
+      "description": "Crispy falafel over hummus, greens and pickled vegetables.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/falafel-bowl?lock=1105"
+      ],
+      "base_price": 5.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 112,
+      "preparation_time_minutes": 14,
+      "nutrition": {
+        "calories": 440,
+        "protein_g": 14,
+        "carbs_g": 52,
+        "fat_g": 20
+      },
+      "tags": [
+        "Vegetarian",
+        "Healthy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1105",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Superfood Salad",
+      "slug": "superfood-salad",
+      "description": "Kale, blueberries, walnuts, feta and pomegranate with citrus dressing.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/superfood-salad?lock=1106"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 94,
+      "preparation_time_minutes": 12,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 10,
+        "carbs_g": 34,
+        "fat_g": 24
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1106",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Recommended",
+      "name": "Grilled Salmon Bowl",
+      "slug": "grilled-salmon-bowl",
+      "description": "Grilled salmon over brown rice with steamed broccoli and lemon herb sauce.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/salmon-bowl,grilled-salmon?lock=1107"
+      ],
+      "base_price": 7.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.7,
+      "total_reviews": 148,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 490,
+        "protein_g": 34,
+        "carbs_g": 38,
+        "fat_g": 20
+      },
+      "tags": [
+        "Healthy",
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1107",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Salad Bowls",
+      "name": "Caesar Salad",
+      "slug": "caesar-salad",
+      "description": "Crisp romaine, parmesan and croutons tossed in a light Caesar dressing.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/caesar-salad?lock=1108"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 103,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 310,
+        "protein_g": 9,
+        "carbs_g": 18,
+        "fat_g": 22
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1108",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Salad Bowls",
+      "name": "Kale & Quinoa Salad",
+      "slug": "kale-and-quinoa-salad",
+      "description": "Massaged kale with quinoa, cranberries, almonds and lemon vinaigrette.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/kale-quinoa-salad?lock=1109"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 76,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 350,
+        "protein_g": 11,
+        "carbs_g": 42,
+        "fat_g": 14
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1109",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Smoothies & Juices",
+      "name": "Tropical Mango Smoothie",
+      "slug": "tropical-mango-smoothie",
+      "description": "Mango, pineapple and passionfruit blended with coconut water.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/mango-smoothie,tropical?lock=1110"
+      ],
+      "base_price": 3.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 121,
+      "preparation_time_minutes": 5,
+      "nutrition": {
+        "calories": 210,
+        "protein_g": 3,
+        "carbs_g": 48,
+        "fat_g": 2
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1110",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Smoothies & Juices",
+      "name": "Beetroot Ginger Juice",
+      "slug": "beetroot-ginger-juice",
+      "description": "Cold-pressed beetroot, carrot, apple and ginger juice.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/beetroot-juice,ginger?lock=1111"
+      ],
+      "base_price": 3.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 58,
+      "preparation_time_minutes": 4,
+      "nutrition": {
+        "calories": 140,
+        "protein_g": 2,
+        "carbs_g": 32,
+        "fat_g": 0
+      },
+      "tags": [
+        "Healthy",
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1111",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Wraps",
+      "name": "Chicken Caesar Wrap",
+      "slug": "chicken-caesar-wrap",
+      "description": "Grilled chicken, romaine and parmesan rolled in a Caesar-dressed tortilla.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/chicken-wrap,caesar?lock=1112"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 92,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 460,
+        "protein_g": 28,
+        "carbs_g": 40,
+        "fat_g": 18
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1112",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Wraps",
+      "name": "Falafel Wrap",
+      "slug": "falafel-wrap",
+      "description": "Crispy falafel with hummus, pickles and tahini in a soft flatbread.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/falafel-wrap?lock=1113"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 84,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 420,
+        "protein_g": 13,
+        "carbs_g": 52,
+        "fat_g": 16
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1113",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Wraps",
+      "name": "Turkey Avocado Wrap",
+      "slug": "turkey-avocado-wrap",
+      "description": "Sliced turkey, avocado, spinach and cranberry mustard in a wheat wrap.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/turkey-wrap,avocado?lock=1114"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 66,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 400,
+        "protein_g": 24,
+        "carbs_g": 38,
+        "fat_g": 16
+      },
+      "tags": [
+        "Healthy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1114",
+      "restaurant_id": "rest_004",
+      "category_id": "cat_007",
+      "menu_category": "Wraps",
+      "name": "Grilled Veggie Panini",
+      "slug": "grilled-veggie-panini",
+      "description": "Zucchini, eggplant and roasted peppers pressed with mozzarella.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/veggie-panini,grilled?lock=1115"
+      ],
+      "base_price": 4.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.1,
+      "total_reviews": 58,
+      "preparation_time_minutes": 10,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 14,
+        "carbs_g": 42,
+        "fat_g": 16
+      },
+      "tags": [
+        "Vegetarian"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1115",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "General Tso's Chicken",
+      "slug": "general-tsos-chicken",
+      "description": "Crispy fried chicken tossed in a sweet, spicy and tangy glaze.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/general-tso-chicken?lock=1116"
+      ],
+      "base_price": 6.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": true,
+      "rating": 4.6,
+      "total_reviews": 231,
+      "preparation_time_minutes": 20,
+      "nutrition": {
+        "calories": 610,
+        "protein_g": 28,
+        "carbs_g": 62,
+        "fat_g": 24
+      },
+      "tags": [
+        "Bestseller",
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1116",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "Mapo Tofu",
+      "slug": "mapo-tofu",
+      "description": "Silken tofu simmered in a fiery Sichuan chili bean sauce with minced pork.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/mapo-tofu?lock=1117"
+      ],
+      "base_price": 5.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 128,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 420,
+        "protein_g": 20,
+        "carbs_g": 18,
+        "fat_g": 28
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1117",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "Peking Duck (Half)",
+      "slug": "peking-duck-half",
+      "description": "Crispy-skinned roast duck served with pancakes, scallions and hoisin.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/peking-duck?lock=1118"
+      ],
+      "base_price": 9.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.8,
+      "total_reviews": 174,
+      "preparation_time_minutes": 35,
+      "nutrition": {
+        "calories": 680,
+        "protein_g": 38,
+        "carbs_g": 24,
+        "fat_g": 42
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1118",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "Salt & Pepper Shrimp",
+      "slug": "salt-and-pepper-shrimp",
+      "description": "Wok-fried shrimp with garlic, chili and scallions in a crispy coating.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/salt-pepper-shrimp?lock=1119"
+      ],
+      "base_price": 7.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 142,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 380,
+        "protein_g": 26,
+        "carbs_g": 20,
+        "fat_g": 18
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1119",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Recommended",
+      "name": "Orange Chicken",
+      "slug": "orange-chicken",
+      "description": "Crispy battered chicken glazed in a sweet and zesty orange sauce.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/orange-chicken?lock=1120"
+      ],
+      "base_price": 6.5,
+      "discount_price": 5.75,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 198,
+      "preparation_time_minutes": 18,
+      "nutrition": {
+        "calories": 590,
+        "protein_g": 26,
+        "carbs_g": 64,
+        "fat_g": 20
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1120",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Noodles & Rice",
+      "name": "Singapore Noodles",
+      "slug": "singapore-noodles",
+      "description": "Curry-spiced rice noodles with shrimp, char siu and vegetables.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/singapore-noodles?lock=1121"
+      ],
+      "base_price": 5.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.3,
+      "total_reviews": 104,
+      "preparation_time_minutes": 16,
+      "nutrition": {
+        "calories": 520,
+        "protein_g": 22,
+        "carbs_g": 66,
+        "fat_g": 16
+      },
+      "tags": [
+        "Spicy"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1121",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Noodles & Rice",
+      "name": "Yangzhou Fried Rice",
+      "slug": "yangzhou-fried-rice",
+      "description": "Classic fried rice with shrimp, char siu, egg and peas.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/fried-rice,yangzhou?lock=1122"
+      ],
+      "base_price": 4.75,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.2,
+      "total_reviews": 89,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 480,
+        "protein_g": 18,
+        "carbs_g": 62,
+        "fat_g": 14
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1122",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Dim Sum",
+      "name": "Shrimp Har Gow",
+      "slug": "shrimp-har-gow",
+      "description": "Delicate steamed shrimp dumplings in a translucent rice-flour wrapper.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/har-gow,shrimp-dumplings?lock=1123"
+      ],
+      "base_price": 5.0,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.6,
+      "total_reviews": 118,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 260,
+        "protein_g": 14,
+        "carbs_g": 28,
+        "fat_g": 8
+      },
+      "tags": [
+        "Bestseller"
+      ],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1123",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Dim Sum",
+      "name": "BBQ Pork Buns",
+      "slug": "bbq-pork-buns",
+      "description": "Fluffy steamed buns filled with sweet and savory BBQ pork.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/bbq-pork-buns?lock=1124"
+      ],
+      "base_price": 4.25,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.5,
+      "total_reviews": 96,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 320,
+        "protein_g": 12,
+        "carbs_g": 44,
+        "fat_g": 10
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1124",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Soups",
+      "name": "Egg Drop Soup",
+      "slug": "egg-drop-soup",
+      "description": "Light chicken broth swirled with silky ribbons of egg.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/egg-drop-soup?lock=1125"
+      ],
+      "base_price": 2.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.0,
+      "total_reviews": 62,
+      "preparation_time_minutes": 8,
+      "nutrition": {
+        "calories": 130,
+        "protein_g": 6,
+        "carbs_g": 12,
+        "fat_g": 6
+      },
+      "tags": [],
+      "variation_groups": [],
+      "extra_groups": []
+    },
+    {
+      "id": "prod_1125",
+      "restaurant_id": "rest_005",
+      "category_id": "cat_004",
+      "menu_category": "Soups",
+      "name": "Wonton Noodle Soup",
+      "slug": "wonton-noodle-soup",
+      "description": "Pork and shrimp wontons with egg noodles in a savory broth.",
+      "image_urls": [
+        "https://loremflickr.com/600/400/wonton-noodle-soup?lock=1126"
+      ],
+      "base_price": 4.5,
+      "discount_price": null,
+      "currency": "USD",
+      "is_available": true,
+      "is_featured": false,
+      "rating": 4.4,
+      "total_reviews": 88,
+      "preparation_time_minutes": 15,
+      "nutrition": {
+        "calories": 340,
+        "protein_g": 18,
+        "carbs_g": 40,
+        "fat_g": 8
+      },
+      "tags": [],
       "variation_groups": [],
       "extra_groups": []
     }

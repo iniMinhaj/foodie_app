@@ -32,6 +32,26 @@ void main() {
         for (var i = 1; i <= 10; i++) _restaurant('rest_$i', categoryId: 'cat_a'),
         for (var i = 11; i <= 12; i++) _restaurant('rest_$i', categoryId: 'cat_b'),
       ],
+      'search_response.json': [
+        {
+          'restaurants': [
+            {'id': 'rest_001', 'name': 'Spice Garden', 'logo_url': 'logo.jpg', 'rating': 4.6},
+          ],
+          'products': [
+            {
+              'id': 'prod_1001',
+              'name': 'Chicken Biryani',
+              'restaurant_id': 'rest_001',
+              'restaurant_name': 'Spice Garden',
+              'image_url': 'biryani.jpg',
+              'base_price': 6.5,
+              'discount_price': 5.75,
+            },
+          ],
+          'recent_searches': ['biryani'],
+          'trending_searches': ['chicken'],
+        },
+      ],
     });
 
     repository = CatalogRepositoryImpl(CatalogLocalDataSource(storage));
@@ -89,6 +109,19 @@ void main() {
       final page = result.valueOrNull!;
       expect(page.items, isEmpty);
       expect(page.hasMore, isFalse);
+    });
+  });
+
+  group('CatalogRepositoryImpl.search', () {
+    test('maps restaurant and product results', () async {
+      final result = await repository.search('chicken');
+
+      final results = result.valueOrNull!;
+      expect(results.restaurants, hasLength(1));
+      expect(results.restaurants.single.name, 'Spice Garden');
+      expect(results.products, hasLength(1));
+      expect(results.products.single.restaurantName, 'Spice Garden');
+      expect(results.products.single.effectivePrice, 5.75);
     });
   });
 }

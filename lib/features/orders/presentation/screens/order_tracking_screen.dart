@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import '../../core/theme/app_theme.dart';
-import '../models/order_model.dart';
+
+import '../../../../core/entities/order.dart';
+import '../../../../core/theme/app_theme.dart';
+import '../widgets/order_status_x.dart';
 
 class OrderTrackingScreen extends StatelessWidget {
-  final OrderModel order;
+  final Order order;
   const OrderTrackingScreen({super.key, required this.order});
 
   static const _fullFlow = [
@@ -18,7 +20,7 @@ class OrderTrackingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCancelled = order.currentStatus == OrderStatus.cancelled;
+    final isCancelled = order.status == OrderStatus.cancelled;
     final completedStatuses = order.statusTimeline.map((e) => e.status).toSet();
 
     return Scaffold(
@@ -44,7 +46,7 @@ class OrderTrackingScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text('${item.quantity}x ', style: Theme.of(context).textTheme.bodyLarge),
-                        Expanded(child: Text(item.productName, style: Theme.of(context).textTheme.bodyLarge)),
+                        Expanded(child: Text(item.name, style: Theme.of(context).textTheme.bodyLarge)),
                         Text('\$${item.lineTotal.toStringAsFixed(2)}', style: Theme.of(context).textTheme.bodyLarge),
                       ],
                     ),
@@ -54,7 +56,7 @@ class OrderTrackingScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Total', style: Theme.of(context).textTheme.titleMedium),
-                    Text('\$${order.grandTotal.toStringAsFixed(2)}', style: Theme.of(context).textTheme.titleMedium),
+                    Text('\$${order.total.toStringAsFixed(2)}', style: Theme.of(context).textTheme.titleMedium),
                   ],
                 ),
               ],
@@ -67,7 +69,7 @@ class OrderTrackingScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
-                color: AppColors.error.withOpacity(0.08),
+                color: AppColors.error.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(AppRadius.md),
               ),
               child: Row(

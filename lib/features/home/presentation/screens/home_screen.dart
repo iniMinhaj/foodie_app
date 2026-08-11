@@ -6,23 +6,18 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/section_header.dart';
 import '../../../../core/widgets/shimmer_placeholders.dart';
 import '../../../../core/widgets/state_views.dart';
-import '../../../../legacy/orders/order_history_screen.dart';
-import '../../../../legacy/search/search_screen.dart';
 import '../../../auth/presentation/providers/auth_notifier.dart';
 import '../../../cart/presentation/providers/cart_notifier.dart';
 import '../../../cart/presentation/screens/cart_screen.dart';
+import '../../../orders/presentation/screens/order_history_screen.dart';
 import '../../../profile/presentation/screens/profile_screen.dart';
 import '../../../restaurant/presentation/screens/restaurant_detail_screen.dart';
+import '../../../search/presentation/screens/search_screen.dart';
 import '../providers/categories_provider.dart';
 import '../providers/restaurant_list_notifier.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/restaurant_card.dart';
 
-/// Home tab plus a lightweight bottom-nav bridge into the still-legacy
-/// Orders screen — that becomes its own Clean Architecture module later
-/// (see docs/MIGRATION_STATUS.md); Cart and Profile are migrated and
-/// wired in directly. This is the only way to reach Orders from a
-/// fully-migrated screen.
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 

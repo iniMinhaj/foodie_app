@@ -1,6 +1,16 @@
 import 'package:equatable/equatable.dart';
 
-enum OrderStatus { placed, preparing, onTheWay, delivered, cancelled }
+enum OrderStatus { placed, confirmed, preparing, outForDelivery, delivered, cancelled }
+
+class OrderStatusEvent extends Equatable {
+  final OrderStatus status;
+  final DateTime timestamp;
+
+  const OrderStatusEvent({required this.status, required this.timestamp});
+
+  @override
+  List<Object?> get props => [status, timestamp];
+}
 
 class OrderItem extends Equatable {
   final String productId;
@@ -28,12 +38,15 @@ class Order extends Equatable {
   final String userId;
   final String restaurantId;
   final String restaurantName;
+  final String restaurantLogoUrl;
+  final String orderNumber;
   final List<OrderItem> items;
   final double subtotal;
   final double deliveryFee;
   final double total;
   final OrderStatus status;
   final DateTime placedAt;
+  final List<OrderStatusEvent> statusTimeline;
   final String addressLabel;
   final String paymentMethodLabel;
 
@@ -42,12 +55,15 @@ class Order extends Equatable {
     required this.userId,
     required this.restaurantId,
     required this.restaurantName,
+    required this.restaurantLogoUrl,
+    required this.orderNumber,
     required this.items,
     required this.subtotal,
     required this.deliveryFee,
     required this.total,
     required this.status,
     required this.placedAt,
+    required this.statusTimeline,
     required this.addressLabel,
     required this.paymentMethodLabel,
   });
@@ -58,12 +74,15 @@ class Order extends Equatable {
         userId,
         restaurantId,
         restaurantName,
+        restaurantLogoUrl,
+        orderNumber,
         items,
         subtotal,
         deliveryFee,
         total,
         status,
         placedAt,
+        statusTimeline,
         addressLabel,
         paymentMethodLabel,
       ];

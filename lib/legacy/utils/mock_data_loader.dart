@@ -27,8 +27,6 @@ class MockDataLoader {
 
   Future<Map<String, dynamic>> getOrders() => _loadJson('assets/mock/orders.json');
 
-  Future<Map<String, dynamic>> getUserProfile() => _loadJson('assets/mock/user_profile.json');
-
   Future<Map<String, dynamic>> search(String query) async {
     // Real backend would filter server-side; we simulate the same response
     // shape regardless of query so the UI has something to render.

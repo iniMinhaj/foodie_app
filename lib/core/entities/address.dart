@@ -15,6 +15,14 @@ class Address extends Equatable {
     required this.isDefault,
   });
 
+  Address copyWith({String? label, String? line1, String? city, bool? isDefault}) => Address(
+        id: id,
+        label: label ?? this.label,
+        line1: line1 ?? this.line1,
+        city: city ?? this.city,
+        isDefault: isDefault ?? this.isDefault,
+      );
+
   @override
   List<Object?> get props => [id, label, line1, city, isDefault];
 }

@@ -144,9 +144,12 @@ class _ProfileHeader extends StatelessWidget {
                   Text('${profile.loyaltyPoints} loyalty points', style: Theme.of(context).textTheme.bodySmall),
                   if (profile.memberSince != null) ...[
                     Text(' • ', style: Theme.of(context).textTheme.bodySmall),
-                    Text(
-                      'Member since ${DateFormat('MMM yyyy').format(profile.memberSince!)}',
-                      style: Theme.of(context).textTheme.bodySmall,
+                    Flexible(
+                      child: Text(
+                        'Member since ${DateFormat('MMM yyyy').format(profile.memberSince!)}',
+                        style: Theme.of(context).textTheme.bodySmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ],

@@ -29,10 +29,13 @@ Restaurant buildFakeRestaurant(
 class FakeCatalogRepository implements CatalogRepository {
   Result<Failure, List<Category>>? nextCategoriesResult;
   Result<Failure, PaginatedResult<Restaurant>>? nextRestaurantsResult;
+  Result<Failure, SearchResults>? nextSearchResult;
 
   int getRestaurantsCallCount = 0;
   int? lastRequestedPage;
   String? lastRequestedCategoryId;
+  int searchCallCount = 0;
+  String? lastSearchQuery;
 
   @override
   Future<Result<Failure, List<Category>>> getCategories() async {
@@ -49,5 +52,12 @@ class FakeCatalogRepository implements CatalogRepository {
     lastRequestedCategoryId = categoryId;
     return nextRestaurantsResult ??
         const Result.ok(PaginatedResult(items: [], hasMore: false));
+  }
+
+  @override
+  Future<Result<Failure, SearchResults>> search(String query) async {
+    searchCallCount++;
+    lastSearchQuery = query;
+    return nextSearchResult ?? const Result.ok(SearchResults(restaurants: [], products: []));
   }
 }

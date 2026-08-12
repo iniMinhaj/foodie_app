@@ -52,4 +52,18 @@ class CatalogRepositoryImpl implements CatalogRepository {
       return Result.err(UnknownFailure(e.message));
     }
   }
+
+  @override
+  Future<Result<Failure, SearchResults>> search(String query) async {
+    try {
+      await simulateDelay();
+      final raw = await local.search(query);
+      return Result.ok(SearchResults(
+        restaurants: raw.restaurants.map((r) => r.toEntity()).toList(),
+        products: raw.products.map((p) => p.toEntity()).toList(),
+      ));
+    } on JsonStorageException catch (e) {
+      return Result.err(UnknownFailure(e.message));
+    }
+  }
 }

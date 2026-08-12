@@ -7,7 +7,7 @@ import '../../../../core/network/failures.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/app_image.dart';
 import '../../../../core/widgets/state_views.dart';
-import '../../../../legacy/checkout/checkout_screen.dart';
+import '../../../checkout/presentation/screens/checkout_screen.dart';
 import '../providers/cart_notifier.dart';
 
 class CartScreen extends ConsumerWidget {

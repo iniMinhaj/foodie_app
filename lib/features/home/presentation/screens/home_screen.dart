@@ -7,10 +7,6 @@ import '../../../../core/widgets/section_header.dart';
 import '../../../../core/widgets/shimmer_placeholders.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../../auth/presentation/providers/auth_notifier.dart';
-import '../../../cart/presentation/providers/cart_notifier.dart';
-import '../../../cart/presentation/screens/cart_screen.dart';
-import '../../../orders/presentation/screens/order_history_screen.dart';
-import '../../../profile/presentation/screens/profile_screen.dart';
 import '../../../restaurant/presentation/screens/restaurant_detail_screen.dart';
 import '../../../search/presentation/screens/search_screen.dart';
 import '../providers/categories_provider.dart';
@@ -27,7 +23,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final _scrollController = ScrollController();
-  int _bottomNavIndex = 0;
 
   @override
   void initState() {
@@ -57,41 +52,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [
-      _HomeBody(scrollController: _scrollController),
-      const OrderHistoryScreen(),
-      const CartScreen(),
-      const ProfileScreen(),
-    ];
-
     return Scaffold(
-      body: SafeArea(child: pages[_bottomNavIndex]),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _bottomNavIndex,
-        onDestinationSelected: (i) => setState(() => _bottomNavIndex = i),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long_rounded),
-            label: 'Orders',
-          ),
-          NavigationDestination(
-            icon: _CartIcon(icon: Icons.shopping_bag_outlined),
-            selectedIcon: _CartIcon(icon: Icons.shopping_bag_rounded),
-            label: 'Cart',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outline_rounded),
-            selectedIcon: Icon(Icons.person_rounded),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      body: SafeArea(child: _HomeBody(scrollController: _scrollController)),
     );
   }
 }
@@ -263,24 +225,6 @@ class _CategoryRow extends ConsumerWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-/// Bottom-nav cart icon with an item-count badge — the one visible payoff
-/// of centralizing cart state app-wide instead of leaving it screen-local.
-class _CartIcon extends ConsumerWidget {
-  final IconData icon;
-  const _CartIcon({required this.icon});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final itemCount = ref.watch(cartNotifierProvider).value?.itemCount ?? 0;
-    if (itemCount == 0) return Icon(icon);
-    return Badge(
-      label: Text('$itemCount'),
-      backgroundColor: AppColors.primary,
-      child: Icon(icon),
     );
   }
 }

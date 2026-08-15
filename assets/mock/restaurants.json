@@ -13,9 +13,12 @@
       "id": "rest_001",
       "name": "Spice Garden",
       "slug": "spice-garden",
-      "logo_url": "https://loremflickr.com/200/200/biryani,indian-food?lock=1001",
-      "cover_url": "https://loremflickr.com/800/400/biryani,indian-food?lock=1002",
-      "category_ids": ["cat_003", "cat_004"],
+      "logo_url": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200&h=200&fit=crop&q=80",
+      "cover_url": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&h=400&fit=crop&q=80",
+      "category_ids": [
+        "cat_003",
+        "cat_004"
+      ],
       "rating": 4.6,
       "total_reviews": 1284,
       "price_range": "$$",
@@ -34,7 +37,11 @@
         "lat": 23.7925,
         "lng": 90.4078
       },
-      "tags": ["Biryani", "Spicy", "Family Combo"]
+      "tags": [
+        "Biryani",
+        "Spicy",
+        "Family Combo"
+      ]
     },
     {
       "id": "rest_002",
@@ -42,7 +49,10 @@
       "slug": "burger-bros",
       "logo_url": "https://loremflickr.com/200/200/burger?lock=2001",
       "cover_url": "https://loremflickr.com/800/400/burger?lock=2002",
-      "category_ids": ["cat_002", "cat_008"],
+      "category_ids": [
+        "cat_002",
+        "cat_008"
+      ],
       "rating": 4.3,
       "total_reviews": 856,
       "price_range": "$",
@@ -61,7 +71,11 @@
         "lat": 23.7937,
         "lng": 90.4066
       },
-      "tags": ["Burger", "Fries", "Fast Delivery"]
+      "tags": [
+        "Burger",
+        "Fries",
+        "Fast Delivery"
+      ]
     },
     {
       "id": "rest_003",
@@ -69,7 +83,9 @@
       "slug": "pizza-roma",
       "logo_url": "https://loremflickr.com/200/200/pizza?lock=3001",
       "cover_url": "https://loremflickr.com/800/400/pizza?lock=3002",
-      "category_ids": ["cat_001"],
+      "category_ids": [
+        "cat_001"
+      ],
       "rating": 4.8,
       "total_reviews": 2140,
       "price_range": "$$$",
@@ -88,7 +104,11 @@
         "lat": 23.7461,
         "lng": 90.3742
       },
-      "tags": ["Italian", "Wood Fired", "Cheese Burst"]
+      "tags": [
+        "Italian",
+        "Wood Fired",
+        "Cheese Burst"
+      ]
     },
     {
       "id": "rest_004",
@@ -96,7 +116,9 @@
       "slug": "green-bowl",
       "logo_url": "https://loremflickr.com/200/200/salad,healthy-food?lock=4001",
       "cover_url": "https://loremflickr.com/800/400/salad,healthy-food?lock=4002",
-      "category_ids": ["cat_007"],
+      "category_ids": [
+        "cat_007"
+      ],
       "rating": 4.5,
       "total_reviews": 412,
       "price_range": "$$",
@@ -115,7 +137,11 @@
         "lat": 23.8759,
         "lng": 90.3795
       },
-      "tags": ["Salad", "Vegan", "Low Calorie"]
+      "tags": [
+        "Salad",
+        "Vegan",
+        "Low Calorie"
+      ]
     },
     {
       "id": "rest_005",
@@ -123,7 +149,9 @@
       "slug": "dragon-wok",
       "logo_url": "https://loremflickr.com/200/200/chinese-food,noodles?lock=5001",
       "cover_url": "https://loremflickr.com/800/400/chinese-food,noodles?lock=5002",
-      "category_ids": ["cat_004"],
+      "category_ids": [
+        "cat_004"
+      ],
       "rating": 4.2,
       "total_reviews": 678,
       "price_range": "$$",
@@ -142,7 +170,11 @@
         "lat": 23.8258,
         "lng": 90.3654
       },
-      "tags": ["Noodles", "Fried Rice", "Dim Sum"]
+      "tags": [
+        "Noodles",
+        "Fried Rice",
+        "Dim Sum"
+      ]
     }
   ]
 }

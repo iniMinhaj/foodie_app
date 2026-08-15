@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/section_header.dart';
@@ -155,7 +156,10 @@ class _Header extends StatelessWidget {
                 builder: (context, ref, _) => IconButton(
                   icon: const Icon(Icons.logout_rounded, color: AppColors.textMuted),
                   tooltip: 'Log out',
-                  onPressed: () => ref.read(authNotifierProvider.notifier).logout(),
+                  onPressed: () async {
+                    await ref.read(authNotifierProvider.notifier).logout();
+                    if (context.mounted) context.go('/login');
+                  },
                 ),
               ),
             ],

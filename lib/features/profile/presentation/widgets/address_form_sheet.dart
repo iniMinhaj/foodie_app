@@ -36,6 +36,7 @@ class _AddressFormSheetState extends ConsumerState<AddressFormSheet> {
   bool _isSaving = false;
 
   bool get _isEditing => widget.existing != null;
+  String? _errorMessage;
 
   @override
   void dispose() {
@@ -52,7 +53,10 @@ class _AddressFormSheetState extends ConsumerState<AddressFormSheet> {
 
   Future<void> _onSavePressed() async {
     if (!_formKey.currentState!.validate()) return;
-    setState(() => _isSaving = true);
+    setState(() {
+      _isSaving = true;
+      _errorMessage = null;
+    });
 
     final address = Address(
       id: widget.existing?.id ?? _uuid.v4(),
@@ -70,6 +74,20 @@ class _AddressFormSheetState extends ConsumerState<AddressFormSheet> {
     }
 
     if (!mounted) return;
+
+    // addAddress/updateAddress persist via the same optimistic-update +
+    // rollback-with-errorMessage shape as every other ProfileNotifier
+    // mutation — a failed save rolls the state back and sets errorMessage
+    // instead of throwing, so it has to be checked here rather than caught.
+    final errorMessage = ref.read(profileNotifierProvider).value?.errorMessage;
+    if (errorMessage != null) {
+      setState(() {
+        _isSaving = false;
+        _errorMessage = errorMessage;
+      });
+      return;
+    }
+
     Navigator.of(context).pop();
   }
 
@@ -103,6 +121,10 @@ class _AddressFormSheetState extends ConsumerState<AddressFormSheet> {
               ),
               Text(_isEditing ? 'Edit Address' : 'Add Address', style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: AppSpacing.md),
+              if (_errorMessage != null) ...[
+                _ErrorBanner(message: _errorMessage!),
+                SizedBox(height: AppSpacing.md),
+              ],
               Text('Label', style: Theme.of(context).textTheme.titleMedium),
               SizedBox(height: AppSpacing.sm),
               TextFormField(
@@ -140,6 +162,36 @@ class _AddressFormSheetState extends ConsumerState<AddressFormSheet> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ErrorBanner extends StatelessWidget {
+  final String message;
+  const _ErrorBanner({required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+      decoration: BoxDecoration(
+        color: AppColors.error.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.error_outline, color: AppColors.error, size: 18),
+          SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.error),
+            ),
+          ),
+        ],
       ),
     );
   }

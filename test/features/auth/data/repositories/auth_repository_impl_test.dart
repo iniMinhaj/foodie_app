@@ -8,17 +8,17 @@ import 'package:shared_preferences_platform_interface/shared_preferences_async_p
 
 import '../../../../helpers/fake_local_api_client.dart';
 
-// A known password + its sha256("foodie_demo_salt_v1" + password) hash,
-// matching AuthLocalDataSource's hashing scheme.
 const _seededEmail = 'seed@foodie.com';
-const _seededPasswordHash = '3edb4f4bd30723ad8cbb671a836684b11ce36c42aa8c4dfc06ac9414a1bf692e'; // "Password123"
+const _seededPasswordHash =
+    '3edb4f4bd30723ad8cbb671a836684b11ce36c42aa8c4dfc06ac9414a1bf692e'; // "Password123"
 
 void main() {
   late FakeLocalApiClient storage;
   late AuthRepositoryImpl repository;
 
   setUp(() async {
-    SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
+    SharedPreferencesAsyncPlatform.instance =
+        InMemorySharedPreferencesAsync.empty();
 
     storage = FakeLocalApiClient({
       'users.json': [
@@ -39,17 +39,21 @@ void main() {
 
   group('AuthRepositoryImpl.register', () {
     test('appends a new user and returns their profile', () async {
-      final result = await repository.register('New Person', 'new@foodie.com', 'password123');
+      final result = await repository.register(
+          'New Person', 'new@foodie.com', 'password123');
 
       expect(result.isOk, isTrue);
       expect(result.valueOrNull?.email, 'new@foodie.com');
       expect(storage.peek('users.json'), hasLength(2));
     });
 
-    test('returns ConflictFailure and does not touch the file for a duplicate email', () async {
+    test(
+        'returns ConflictFailure and does not touch the file for a duplicate email',
+        () async {
       final before = storage.peek('users.json');
 
-      final result = await repository.register('Someone Else', _seededEmail, 'password123');
+      final result = await repository.register(
+          'Someone Else', _seededEmail, 'password123');
 
       expect(result.failureOrNull, isA<ConflictFailure>());
       expect(storage.peek('users.json'), before);
@@ -63,7 +67,9 @@ void main() {
       expect(result.failureOrNull, isA<NotFoundFailure>());
     });
 
-    test('returns a generic ValidationFailure for a wrong password (not "email not found")', () async {
+    test(
+        'returns a generic ValidationFailure for a wrong password (not "email not found")',
+        () async {
       final result = await repository.login(_seededEmail, 'wrong-password');
 
       expect(result.failureOrNull, isA<ValidationFailure>());
@@ -81,7 +87,8 @@ void main() {
   });
 
   group('AuthRepositoryImpl.restoreSession / logout', () {
-    test('restoreSession returns Ok(null) when nothing was ever logged in', () async {
+    test('restoreSession returns Ok(null) when nothing was ever logged in',
+        () async {
       final result = await repository.restoreSession();
 
       expect(result.isOk, isTrue);

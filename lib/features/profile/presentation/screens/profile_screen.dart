@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/entities/address.dart';
@@ -79,11 +80,14 @@ class _ProfileBody extends ConsumerWidget {
           ),
           SizedBox(height: AppSpacing.md),
           OutlinedButton(
-            onPressed: () => ref.read(authNotifierProvider.notifier).logout(),
+            onPressed: () async {
+              await ref.read(authNotifierProvider.notifier).logout();
+              if (context.mounted) context.go('/login');
+            },
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.error,
               side: const BorderSide(color: AppColors.error),
-              padding: EdgeInsets.symmetric(vertical: 14.h),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 14.h),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
             ),
             child: const Text('Log Out'),
@@ -115,6 +119,7 @@ class _ProfileBody extends ConsumerWidget {
     if (!success) return;
 
     await ref.read(authNotifierProvider.notifier).logout();
+    if (context.mounted) context.go('/login');
   }
 }
 

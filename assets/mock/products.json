@@ -278,7 +278,7 @@
       "menu_category": "Biryani Specials",
       "name": "Beef Tehari",
       "slug": "beef-tehari",
-      "description": "Mustard-oil scented rice cooked with tender beef chunks and whole spices \u2014 a Puran Dhaka favorite.",
+      "description": "Mustard-oil scented rice cooked with tender beef chunks and whole spices — a Puran Dhaka favorite.",
       "image_urls": [
         "https://loremflickr.com/600/400/beef,rice?lock=11008"
       ],
@@ -433,7 +433,7 @@
       "slug": "mango-lassi",
       "description": "Chilled yogurt smoothie blended with ripe Alphonso mango pulp and a pinch of cardamom.",
       "image_urls": [
-        "https://loremflickr.com/600/400/lassi,mango-drink?lock=11011"
+        "https://loremflickr.com/600/400/mango-lassi?lock=11011"
       ],
       "base_price": 2.75,
       "discount_price": null,
@@ -482,9 +482,9 @@
       "menu_category": "Beverages",
       "name": "Borhani",
       "slug": "borhani",
-      "description": "Traditional spiced yogurt drink with mint, mustard and black salt \u2014 the classic biryani companion.",
+      "description": "Traditional spiced yogurt drink with mint, mustard and black salt — the classic biryani companion.",
       "image_urls": [
-        "https://loremflickr.com/600/400/yogurt-drink,mint?lock=11012"
+        "https://loremflickr.com/600/400/lassi?lock=11012"
       ],
       "base_price": 1.99,
       "discount_price": null,
@@ -1427,7 +1427,7 @@
       "slug": "quinoa-power-bowl",
       "description": "Protein-packed quinoa with roasted chickpeas, sweet potato, kale and tahini dressing.",
       "image_urls": [
-        "https://loremflickr.com/600/400/quinoa,healthy-bowl?lock=14027"
+        "https://loremflickr.com/600/400/quinoa-salad?lock=14027"
       ],
       "base_price": 6.25,
       "discount_price": 5.5,
@@ -1492,7 +1492,7 @@
       "slug": "avocado-chickpea-bowl",
       "description": "Smashed avocado, roasted chickpeas, cherry tomatoes and microgreens over brown rice.",
       "image_urls": [
-        "https://loremflickr.com/600/400/avocado,healthy-bowl?lock=14029"
+        "https://loremflickr.com/600/400/avocado-toast?lock=14029"
       ],
       "base_price": 5.75,
       "discount_price": null,
@@ -2015,7 +2015,7 @@
       "slug": "sweet-lassi",
       "description": "Classic chilled yogurt drink lightly sweetened and topped with a pinch of cardamom.",
       "image_urls": [
-        "https://loremflickr.com/600/400/lassi,yogurt-drink?lock=11042"
+        "https://loremflickr.com/600/400/lassi?lock=11042"
       ],
       "base_price": 2.25,
       "discount_price": null,
@@ -2351,7 +2351,7 @@
       "slug": "mediterranean-hummus-bowl",
       "description": "Creamy hummus, falafel, cucumber, tomato and pickled onions over mixed greens.",
       "image_urls": [
-        "https://loremflickr.com/600/400/hummus-bowl,mediterranean?lock=14052"
+        "https://loremflickr.com/600/400/hummus?lock=14052"
       ],
       "base_price": 5.5,
       "discount_price": null,
@@ -2383,7 +2383,7 @@
       "slug": "berry-protein-smoothie",
       "description": "Mixed berries blended with banana, whey protein and almond milk.",
       "image_urls": [
-        "https://loremflickr.com/600/400/berry-smoothie,protein?lock=14053"
+        "https://loremflickr.com/600/400/berry-smoothie?lock=14053"
       ],
       "base_price": 4.25,
       "discount_price": null,
@@ -2568,7 +2568,7 @@
       "slug": "dal-makhani",
       "description": "Slow-simmered black lentils and kidney beans in a buttery, smoky tomato gravy.",
       "image_urls": [
-        "https://loremflickr.com/600/400/dal,lentil-curry?lock=1060"
+        "https://loremflickr.com/600/400/dal?lock=1060"
       ],
       "base_price": 4.25,
       "discount_price": null,
@@ -2628,7 +2628,7 @@
       "slug": "palak-paneer",
       "description": "Cottage cheese cubes simmered in a silky spiced spinach puree.",
       "image_urls": [
-        "https://loremflickr.com/600/400/palak-paneer,spinach-curry?lock=1062"
+        "https://loremflickr.com/600/400/palak-paneer?lock=1062"
       ],
       "base_price": 5.5,
       "discount_price": 4.95,
@@ -2691,7 +2691,7 @@
       "slug": "aloo-gobi",
       "description": "Potatoes and cauliflower dry-tossed with turmeric, cumin and ginger.",
       "image_urls": [
-        "https://loremflickr.com/600/400/aloo-gobi,potato-curry?lock=1064"
+        "https://loremflickr.com/600/400/aloo-gobi?lock=1064"
       ],
       "base_price": 3.75,
       "discount_price": null,
@@ -2753,7 +2753,7 @@
       "slug": "vegetable-biryani",
       "description": "Basmati rice layered with mixed vegetables, saffron and fried onions.",
       "image_urls": [
-        "https://loremflickr.com/600/400/vegetable-biryani?lock=1066"
+        "https://loremflickr.com/600/400/biryani?lock=1066"
       ],
       "base_price": 5.5,
       "discount_price": null,
@@ -2784,7 +2784,7 @@
       "slug": "prawn-biryani",
       "description": "Fragrant basmati rice dum-cooked with spiced prawns and caramelized onions.",
       "image_urls": [
-        "https://loremflickr.com/600/400/prawn-biryani,shrimp-rice?lock=1067"
+        "https://loremflickr.com/600/400/shrimp-rice?lock=1067"
       ],
       "base_price": 8.5,
       "discount_price": 7.75,
@@ -2815,7 +2815,7 @@
       "slug": "onion-bhaji",
       "description": "Crispy chickpea-batter fritters loaded with spiced onions.",
       "image_urls": [
-        "https://loremflickr.com/600/400/onion-bhaji,fritters?lock=1068"
+        "https://loremflickr.com/600/400/onion-bhaji?lock=1068"
       ],
       "base_price": 3.0,
       "discount_price": null,
@@ -2908,7 +2908,7 @@
       "slug": "rose-falooda",
       "description": "Layered rose milk dessert drink with vermicelli, basil seeds and jelly.",
       "image_urls": [
-        "https://loremflickr.com/600/400/falooda,rose-drink?lock=1071"
+        "https://loremflickr.com/600/400/falooda?lock=1071"
       ],
       "base_price": 3.25,
       "discount_price": null,
@@ -2939,7 +2939,7 @@
       "slug": "chicken-rezala",
       "description": "Chicken braised in a mild white gravy with yogurt and green chili.",
       "image_urls": [
-        "https://loremflickr.com/600/400/chicken-rezala?lock=1072"
+        "https://loremflickr.com/600/400/chicken-curry?lock=1072"
       ],
       "base_price": 6.5,
       "discount_price": null,
@@ -3001,7 +3001,7 @@
       "slug": "chana-masala",
       "description": "Chickpeas simmered in a tangy tomato-onion masala with garam spices.",
       "image_urls": [
-        "https://loremflickr.com/600/400/chana-masala,chickpea-curry?lock=1074"
+        "https://loremflickr.com/600/400/chana-masala?lock=1074"
       ],
       "base_price": 3.75,
       "discount_price": null,
@@ -3032,7 +3032,7 @@
       "slug": "lamb-rogan-josh",
       "description": "Slow-braised lamb in a rich Kashmiri red chili and yogurt gravy.",
       "image_urls": [
-        "https://loremflickr.com/600/400/rogan-josh,lamb-curry?lock=1075"
+        "https://loremflickr.com/600/400/lamb-curry?lock=1075"
       ],
       "base_price": 8.75,
       "discount_price": 7.99,
@@ -3157,7 +3157,7 @@
       "slug": "bacon-ranch-burger",
       "description": "Beef patty with crispy bacon, cheddar and cool ranch sauce.",
       "image_urls": [
-        "https://loremflickr.com/600/400/burger,bacon-ranch?lock=1079"
+        "https://loremflickr.com/600/400/bacon-burger?lock=1079"
       ],
       "base_price": 5.99,
       "discount_price": null,
@@ -3246,7 +3246,7 @@
       "slug": "turkey-club-burger",
       "description": "Grilled turkey patty with beef bacon, lettuce and tomato on wheat bun.",
       "image_urls": [
-        "https://loremflickr.com/600/400/turkey-burger,club?lock=1082"
+        "https://loremflickr.com/600/400/turkey-burger?lock=1082"
       ],
       "base_price": 4.75,
       "discount_price": null,
@@ -3275,7 +3275,7 @@
       "slug": "pulled-pork-burger",
       "description": "Slow-cooked pulled pork with tangy slaw on a toasted bun.",
       "image_urls": [
-        "https://loremflickr.com/600/400/pulled-pork-burger?lock=1083"
+        "https://loremflickr.com/600/400/pulled-pork?lock=1083"
       ],
       "base_price": 5.25,
       "discount_price": null,
@@ -3366,7 +3366,7 @@
       "slug": "iced-lemonade",
       "description": "Freshly squeezed lemonade served over ice, lightly sweetened.",
       "image_urls": [
-        "https://loremflickr.com/600/400/lemonade,iced-drink?lock=1086"
+        "https://loremflickr.com/600/400/lemonade?lock=1086"
       ],
       "base_price": 1.75,
       "discount_price": null,
@@ -3428,7 +3428,7 @@
       "slug": "diavola-pizza",
       "description": "Spicy salami, chili flakes and mozzarella on a wood-fired crust.",
       "image_urls": [
-        "https://loremflickr.com/600/400/pizza,diavola-spicy?lock=1088"
+        "https://loremflickr.com/600/400/spicy-pizza?lock=1088"
       ],
       "base_price": 10.25,
       "discount_price": null,
@@ -3883,7 +3883,7 @@
       "slug": "buddha-bowl",
       "description": "Roasted sweet potato, chickpeas, quinoa and greens with tahini drizzle.",
       "image_urls": [
-        "https://loremflickr.com/600/400/buddha-bowl,healthy-bowl?lock=1103"
+        "https://loremflickr.com/600/400/buddha-bowl?lock=1103"
       ],
       "base_price": 6.0,
       "discount_price": null,
@@ -3947,7 +3947,7 @@
       "slug": "falafel-bowl",
       "description": "Crispy falafel over hummus, greens and pickled vegetables.",
       "image_urls": [
-        "https://loremflickr.com/600/400/falafel-bowl?lock=1105"
+        "https://loremflickr.com/600/400/falafel?lock=1105"
       ],
       "base_price": 5.75,
       "discount_price": null,
@@ -4011,7 +4011,7 @@
       "slug": "grilled-salmon-bowl",
       "description": "Grilled salmon over brown rice with steamed broccoli and lemon herb sauce.",
       "image_urls": [
-        "https://loremflickr.com/600/400/salmon-bowl,grilled-salmon?lock=1107"
+        "https://loremflickr.com/600/400/grilled-salmon?lock=1107"
       ],
       "base_price": 7.5,
       "discount_price": null,
@@ -4074,7 +4074,7 @@
       "slug": "kale-and-quinoa-salad",
       "description": "Massaged kale with quinoa, cranberries, almonds and lemon vinaigrette.",
       "image_urls": [
-        "https://loremflickr.com/600/400/kale-quinoa-salad?lock=1109"
+        "https://loremflickr.com/600/400/kale-salad?lock=1109"
       ],
       "base_price": 5.25,
       "discount_price": null,
@@ -4138,7 +4138,7 @@
       "slug": "beetroot-ginger-juice",
       "description": "Cold-pressed beetroot, carrot, apple and ginger juice.",
       "image_urls": [
-        "https://loremflickr.com/600/400/beetroot-juice,ginger?lock=1111"
+        "https://loremflickr.com/600/400/beetroot-juice?lock=1111"
       ],
       "base_price": 3.5,
       "discount_price": null,
@@ -4170,7 +4170,7 @@
       "slug": "chicken-caesar-wrap",
       "description": "Grilled chicken, romaine and parmesan rolled in a Caesar-dressed tortilla.",
       "image_urls": [
-        "https://loremflickr.com/600/400/chicken-wrap,caesar?lock=1112"
+        "https://loremflickr.com/600/400/chicken-wrap?lock=1112"
       ],
       "base_price": 5.5,
       "discount_price": null,
@@ -4230,7 +4230,7 @@
       "slug": "turkey-avocado-wrap",
       "description": "Sliced turkey, avocado, spinach and cranberry mustard in a wheat wrap.",
       "image_urls": [
-        "https://loremflickr.com/600/400/turkey-wrap,avocado?lock=1114"
+        "https://loremflickr.com/600/400/turkey-wrap?lock=1114"
       ],
       "base_price": 5.25,
       "discount_price": null,
@@ -4261,7 +4261,7 @@
       "slug": "grilled-veggie-panini",
       "description": "Zucchini, eggplant and roasted peppers pressed with mozzarella.",
       "image_urls": [
-        "https://loremflickr.com/600/400/veggie-panini,grilled?lock=1115"
+        "https://loremflickr.com/600/400/panini?lock=1115"
       ],
       "base_price": 4.5,
       "discount_price": null,
